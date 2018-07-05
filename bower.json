@@ -1,0 +1,23 @@
+{
+  "name": "chess-sass",
+  "description": "Tabuleiro de Xadrez em sass",
+  "main": "index.js",
+  "authors": [
+    "Diego Feitoza"
+  ],
+  "license": "ISC",
+  "homepage": "",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "libs",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "^3.3.1",
+    "bootstrap": "^4.1.1"
+  }
+}
