@@ -54,7 +54,7 @@ gulp.task('sass', function () {
 gulp.task('script', function () {
  return gulp.src(jsFiles)
    .pipe(concat('chess.js'))
-   .pipe(minify())
+   //.pipe(minify())
    .pipe(gulp.dest(jsDest));
 });
 

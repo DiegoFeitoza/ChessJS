@@ -1,0 +1,16 @@
+#lista-tabuleiro{
+	position:relative;
+	display: block;
+	max-height: 800px;
+	padding: 0;
+	margin:0;
+	list-style:none;
+	border: 1px solid rgb(150,150,150);
+
+	.item-tabuleiro{
+		margin:0;
+		padding:0;
+		box-sizing: initial;
+    	float: left;
+	}
+}

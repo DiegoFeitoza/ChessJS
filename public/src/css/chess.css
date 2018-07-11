@@ -4,10 +4,35 @@
   font-size: 15px;
 }
 
-#header {
-  color: yellow;
+#top-chess {
+  max-width: 800px;
+  display: block;
+  margin: 0 auto;
 }
 
-#main {
-  background: grey;
+#top-chess h1 {
+  text-align: center;
+}
+
+#main-chess {
+  max-width: 800px;
+  display: block;
+  margin: 0 auto 15px;
+}
+
+#lista-tabuleiro {
+  position: relative;
+  display: block;
+  max-height: 800px;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  border: 1px solid #969696;
+}
+
+#lista-tabuleiro .item-tabuleiro {
+  margin: 0;
+  padding: 0;
+  box-sizing: initial;
+  float: left;
 }
