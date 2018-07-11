@@ -1,0 +1,13 @@
+#footer {
+  background: red;
+  color: red;
+  font-size: 15px;
+}
+
+#header {
+  color: yellow;
+}
+
+#main {
+  background: grey;
+}
