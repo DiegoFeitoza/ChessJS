@@ -64,7 +64,6 @@ var movimentos = {
 
 	drag: function(ev, peca) {
 	    ev.dataTransfer.setData("peca", peca.id);
-	    console.log($(peca).attr('id'));
 	},
 
 	drop: function(ev,posicao) {
@@ -76,7 +75,7 @@ var movimentos = {
 	    	var data = ev.dataTransfer.getData("peca");
 	    	$(posicao).append($('#'+data));
 	    	//ev.target.appendChild(document.getElementById(data));
-	    }    
+	    }
 	}
 }
 
@@ -91,6 +90,22 @@ $(function(){
 	$(window).resize(function(){
 		chess.organizar();
 		console.log('mexeu');
+	});
+
+	//Events
+	var pecasBrancas = document.getElementsByClassName("peca-branca");
+	pecasBrancas.addEventListener("click", function(){
+		movimentos.drag(event, this);
+	});
+
+	//Events
+	$('.item-tabuleiro').on('click',function(){
+		if($('.item-tabuleiro').find('a').length > 0){
+			console.log(this);
+		}else{
+			movimentos.drop(event, this);
+		}
+		
 	});
 });
 
