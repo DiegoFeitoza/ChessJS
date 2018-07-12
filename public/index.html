@@ -15,109 +15,287 @@
 		<!-- Header -->
 		<header id="top-chess">
 			<h1>Xadrez</h1>
+			<h5>By: Diego Feitoza</h5>
 		</header>
 
-		<!-- 
-			Chess Symbols
-			Name			Symbol	Codepoint	HTML
-			white chess king	♔	U+2654	&#9812;
-			white chess queen	♕	U+2655	&#9813;
-			white chess rook	♖	U+2656	&#9814;
-			white chess bishop	♗	U+2657	&#9815;
-			white chess knight	♘	U+2658	&#9816;
-			white chess pawn	♙	U+2659	&#9817;
-
-			black chess king	♚	U+265A	&#9818;
-			black chess queen	♛	U+265B	&#9819;
-			black chess rook	♜	U+265C	&#9820;
-			black chess bishop	♝	U+265D	&#9821;
-			black chess knight	♞	U+265E	&#9822;
-			black chess pawn	♟	U+265F	&#9823;
-			-->
-		<!-- Main -->
 		<div id="main-chess">
-			<ul id="lista-tabuleiro">
-				<!-- linha 1 -->
-				<li class="item-tabuleiro" data-pos="h1"><a href="javascript:;">&#9814;</a></li>
-				<li class="item-tabuleiro" data-pos="g1"><a href="javascript:;">&#9816;</a></li>
-				<li class="item-tabuleiro" data-pos="f1"><a href="javascript:;">&#9815;</a></li>
-				<li class="item-tabuleiro" data-pos="e1"><a href="javascript:;">&#9812;</a></li>
-				<li class="item-tabuleiro" data-pos="d1"><a href="javascript:;">&#9813;</a></li>
-				<li class="item-tabuleiro" data-pos="c1"><a href="javascript:;">&#9815;</a></li>
-				<li class="item-tabuleiro" data-pos="b1"><a href="javascript:;">&#9816;</a></li>
-				<li class="item-tabuleiro" data-pos="a1"><a href="javascript:;">&#9814;</a></li>
+			<div id="main-tabuleiro">			
+				<ul id="lista-tabuleiro">
+					<!-- linha 1 -->
+					<li class="item-tabuleiro" data-pos="h1" ondrop="movimentos.drop(event,this)" ondragover="movimentos.allowDrop(event)">
+						<a href="javascript:;" draggable="true" ondragstart="movimentos.drag(event,this)" id="torre-branco-1" class="peca-branca">
+							&#9814;
+						</a>
+					</li>
 
-				<!-- Linha 2 -->
-				<li class="item-tabuleiro" data-pos="h2"><a href="javascript:;">&#9817;</a></li>
-				<li class="item-tabuleiro" data-pos="g2"><a href="javascript:;">&#9817;</a></li>
-				<li class="item-tabuleiro" data-pos="f2"><a href="javascript:;">&#9817;</a></li>
-				<li class="item-tabuleiro" data-pos="e2"><a href="javascript:;">&#9817;</a></li>
-				<li class="item-tabuleiro" data-pos="d2"><a href="javascript:;">&#9817;</a></li>
-				<li class="item-tabuleiro" data-pos="c2"><a href="javascript:;">&#9817;</a></li>
-				<li class="item-tabuleiro" data-pos="b2"><a href="javascript:;">&#9817;</a></li>
-				<li class="item-tabuleiro" data-pos="a2"><a href="javascript:;">&#9817;</a></li>
+					<li class="item-tabuleiro" data-pos="g1" ondrop="movimentos.drop(event,this)" ondragover="movimentos.allowDrop(event)">
+						<a href="javascript:;" draggable="true" ondragstart="movimentos.drag(event,this)" id="cavalo-branco-1" class="peca-branca">
+							&#9816;
+						</a>
+					</li>
+					<li class="item-tabuleiro" data-pos="f1" ondrop="movimentos.drop(event,this)" ondragover="movimentos.allowDrop(event)">
+						<a href="javascript:;" draggable="true" ondragstart="movimentos.drag(event,this)" id="bispo-branco-1" class="peca-branca">
+							&#9815;
+						</a>
+					</li>
+					<li class="item-tabuleiro" data-pos="e1" ondrop="movimentos.drop(event,this)" ondragover="movimentos.allowDrop(event)">
+						<a href="javascript:;" draggable="true" ondragstart="movimentos.drag(event,this)" id="rei-branco" class="peca-branca">
+							&#9812;
+						</a>
+					</li>
+					<li class="item-tabuleiro" data-pos="d1" ondrop="movimentos.drop(event,this)" ondragover="movimentos.allowDrop(event)">
+						<a href="javascript:;" draggable="true" ondragstart="movimentos.drag(event,this)" id="rainha-branco" class="peca-branca">
+							&#9813;
+						</a>
+					</li>
+					<li class="item-tabuleiro" data-pos="c1" ondrop="movimentos.drop(event,this)" ondragover="movimentos.allowDrop(event)">
+						<a href="javascript:;" draggable="true" ondragstart="movimentos.drag(event,this)" id="bispo-branco-2" class="peca-branca">
+							&#9815;
+						</a>
+					</li>
+					<li class="item-tabuleiro" data-pos="b1" ondrop="movimentos.drop(event,this)" ondragover="movimentos.allowDrop(event)">
+						<a href="javascript:;" draggable="true" ondragstart="movimentos.drag(event,this)" id="cavalo-branco-2" class="peca-branca">
+							&#9816;
+						</a>
+					</li>
+					<li class="item-tabuleiro" data-pos="a1" ondrop="movimentos.drop(event,this)" ondragover="movimentos.allowDrop(event)">
+						<a href="javascript:;" draggable="true" ondragstart="movimentos.drag(event,this)" id="torre-branco-2" class="peca-branca">
+							&#9814;
+						</a>
+					</li>
 
-				<!-- Linha 3 -->
-				<li class="item-tabuleiro" data-pos="h3"></li>
-				<li class="item-tabuleiro" data-pos="g3"></li>
-				<li class="item-tabuleiro" data-pos="f3"></li>
-				<li class="item-tabuleiro" data-pos="e3"></li>
-				<li class="item-tabuleiro" data-pos="d3"></li>
-				<li class="item-tabuleiro" data-pos="c3"></li>
-				<li class="item-tabuleiro" data-pos="b3"></li>
-				<li class="item-tabuleiro" data-pos="a3"></li>
+					<!-- Linha 2 -->
+					<li class="item-tabuleiro" data-pos="h2" ondrop="movimentos.drop(event,this)" ondragover="movimentos.allowDrop(event)">
+						<a href="javascript:;" draggable="true" ondragstart="movimentos.drag(event,this)" id="piao-branco-1" class="peca-branca">
+							&#9817;
+						</a>
+					</li>
+					<li class="item-tabuleiro" data-pos="g2" ondrop="movimentos.drop(event,this)" ondragover="movimentos.allowDrop(event)">
+						<a href="javascript:;" draggable="true" ondragstart="movimentos.drag(event,this)" id="piao-branco-2" class="peca-branca">
+							&#9817;
+						</a>
+					</li>
+					<li class="item-tabuleiro" data-pos="f2" ondrop="movimentos.drop(event,this)" ondragover="movimentos.allowDrop(event)">
+						<a href="javascript:;" draggable="true" ondragstart="movimentos.drag(event,this)" id="piao-branco-3" class="peca-branca">
+							&#9817;
+						</a>
+					</li>
+					<li class="item-tabuleiro" data-pos="e2" ondrop="movimentos.rop(event,this)" ondragover="movimentos.allowDrop(event)">
+						<a href="javascript:;" draggable="true" ondragstart="movimentos.drag(event,this)" id="piao-branco-4" class="peca-branca">
+							&#9817;
+						</a>
+					</li>
+					<li class="item-tabuleiro" data-pos="d2" ondrop="movimentos.drop(event,this)" ondragover="movimentos.allowDrop(event)">
+						<a href="javascript:;" draggable="true" ondragstart="movimentos.drag(event,this)" id="piao-branco-5" class="peca-branca">
+							&#9817;
+						</a>
+					</li>
+					<li class="item-tabuleiro" data-pos="c2" ondrop="movimentos.drop(event,this)" ondragover="movimentos.allowDrop(event)">
+						<a href="javascript:;" draggable="true" ondragstart="movimentos.drag(event,this)" id="piao-branco-6" class="peca-branca">
+							&#9817;
+						</a>
+					</li>
+					<li class="item-tabuleiro" data-pos="b2" ondrop="movimentos.drop(event,this)" ondragover="movimentos.allowDrop(event)">
+						<a href="javascript:;" draggable="true" ondragstart="movimentos.drag(event,this)" id="piao-branco-7" class="peca-branca">
+							&#9817;
+						</a>
+					</li>
+					<li class="item-tabuleiro" data-pos="a2" ondrop="movimentos.drop(event,this)" ondragover="movimentos.allowDrop(event)">
+						<a href="javascript:;" draggable="true" ondragstart="movimentos.drag(event,this)" id="piao-branco-8" class="peca-branca">
+							&#9817;
+						</a>
+					</li>
 
-				<!-- Linha 4 -->
-				<li class="item-tabuleiro" data-pos="h4"></li>
-				<li class="item-tabuleiro" data-pos="g4"></li>
-				<li class="item-tabuleiro" data-pos="f4"></li>
-				<li class="item-tabuleiro" data-pos="e4"></li>
-				<li class="item-tabuleiro" data-pos="d4"></li>
-				<li class="item-tabuleiro" data-pos="c4"></li>
-				<li class="item-tabuleiro" data-pos="b4"></li>
-				<li class="item-tabuleiro" data-pos="a4"></li>
+					<!-- Linha 3 -->
+					<li class="item-tabuleiro" data-pos="h3" ondrop="movimentos.drop(event,this)" ondragover="movimentos.allowDrop(event)">
+						
+					</li>
+					<li class="item-tabuleiro" data-pos="g3" ondrop="movimentos.drop(event,this)" ondragover="movimentos.allowDrop(event)">
+						
+					</li>
+					<li class="item-tabuleiro" data-pos="f3" ondrop="movimentos.drop(event,this)" ondragover="movimentos.allowDrop(event)">
+						
+					</li>
+					<li class="item-tabuleiro" data-pos="e3" ondrop="movimentos.drop(event,this)" ondragover="movimentos.allowDrop(event)">
+						
+					</li>
+					<li class="item-tabuleiro" data-pos="d3" ondrop="movimentos.drop(event,this)" ondragover="movimentos.allowDrop(event)">
+						
+					</li>
+					<li class="item-tabuleiro" data-pos="c3" ondrop="movimentos.drop(event,this)" ondragover="movimentos.allowDrop(event)">
+						
+					</li>
+					<li class="item-tabuleiro" data-pos="b3" ondrop="movimentos.drop(event,this)" ondragover="movimentos.allowDrop(event)">
+						
+					</li>
+					<li class="item-tabuleiro" data-pos="a3" ondrop="movimentos.drop(event,this)" ondragover="movimentos.allowDrop(event)">
+						
+					</li>
 
-				<!-- Linha 5 -->
-				<li class="item-tabuleiro" data-pos="h5"></li>
-				<li class="item-tabuleiro" data-pos="g5"></li>
-				<li class="item-tabuleiro" data-pos="f5"></li>
-				<li class="item-tabuleiro" data-pos="e5"></li>
-				<li class="item-tabuleiro" data-pos="d5"></li>
-				<li class="item-tabuleiro" data-pos="c5"></li>
-				<li class="item-tabuleiro" data-pos="b5"></li>
-				<li class="item-tabuleiro" data-pos="a5"></li>
+					<!-- Linha 4 -->
+					<li class="item-tabuleiro" data-pos="h4" ondrop="movimentos.drop(event,this)" ondragover="movimentos.allowDrop(event)">
+						
+					</li>
+					<li class="item-tabuleiro" data-pos="g4" ondrop="movimentos.drop(event,this)" ondragover="movimentos.allowDrop(event)">
+						
+					</li>
+					<li class="item-tabuleiro" data-pos="f4" ondrop="movimentos.drop(event,this)" ondragover="movimentos.allowDrop(event)">
+						
+					</li>
+					<li class="item-tabuleiro" data-pos="e4" ondrop="movimentos.drop(event,this)" ondragover="movimentos.allowDrop(event)">
+						
+					</li>
+					<li class="item-tabuleiro" data-pos="d4" ondrop="movimentos.drop(event,this)" ondragover="movimentos.allowDrop(event)">
+						
+					</li>
+					<li class="item-tabuleiro" data-pos="c4" ondrop="movimentos.drop(event,this)" ondragover="movimentos.allowDrop(event)">
+						
+					</li>
+					<li class="item-tabuleiro" data-pos="b4" ondrop="movimentos.drop(event,this)" ondragover="movimentos.allowDrop(event)">
+						
+					</li>
+					<li class="item-tabuleiro" data-pos="a4" ondrop="movimentos.drop(event,this)" ondragover="movimentos.allowDrop(event)">
+						
+					</li>
 
-				<!-- Linha 6 -->
-				<li class="item-tabuleiro" data-pos="h6"></li>
-				<li class="item-tabuleiro" data-pos="g6"></li>
-				<li class="item-tabuleiro" data-pos="f6"></li>
-				<li class="item-tabuleiro" data-pos="e6"></li>
-				<li class="item-tabuleiro" data-pos="d6"></li>
-				<li class="item-tabuleiro" data-pos="c6"></li>
-				<li class="item-tabuleiro" data-pos="b6"></li>
-				<li class="item-tabuleiro" data-pos="a6"></li>
+					<!-- Linha 5 -->
+					<li class="item-tabuleiro" data-pos="h5" ondrop="movimentos.drop(event,this)" ondragover="movimentos.allowDrop(event)">
+						
+					</li>
+					<li class="item-tabuleiro" data-pos="g5" ondrop="movimentos.drop(event,this)" ondragover="movimentos.allowDrop(event)">
+						
+					</li>
+					<li class="item-tabuleiro" data-pos="f5" ondrop="movimentos.drop(event,this)" ondragover="movimentos.allowDrop(event)">
+						
+					</li>
+					<li class="item-tabuleiro" data-pos="e5" ondrop="movimentos.drop(event,this)" ondragover="movimentos.allowDrop(event)">
+						
+					</li>
+					<li class="item-tabuleiro" data-pos="d5" ondrop="movimentos.drop(event,this)" ondragover="movimentos.allowDrop(event)">
+						
+					</li>
+					<li class="item-tabuleiro" data-pos="c5" ondrop="movimentos.drop(event,this)" ondragover="movimentos.allowDrop(event)">
+						
+					</li>
+					<li class="item-tabuleiro" data-pos="b5" ondrop="movimentos.drop(event,this)" ondragover="movimentos.allowDrop(event)">
+						
+					</li>
+					<li class="item-tabuleiro" data-pos="a5" ondrop="movimentos.drop(event,this)" ondragover="movimentos.allowDrop(event)">
+						
+					</li>
 
-				<!-- Linha 7 -->
-				<li class="item-tabuleiro" data-pos="h7"><a href="javascript:;">&#9817;</a></li>
-				<li class="item-tabuleiro" data-pos="g7"><a href="javascript:;">&#9817;</a></li>
-				<li class="item-tabuleiro" data-pos="f7"><a href="javascript:;">&#9817;</a><li>
-				<li class="item-tabuleiro" data-pos="e7"><a href="javascript:;">&#9817;</a></li>
-				<li class="item-tabuleiro" data-pos="d7"><a href="javascript:;">&#9817;</a></li>
-				<li class="item-tabuleiro" data-pos="c7"><a href="javascript:;">&#9817;</a></li>
-				<li class="item-tabuleiro" data-pos="b7"><a href="javascript:;">&#9817;</a></li>
-				<li class="item-tabuleiro" data-pos="a7"><a href="javascript:;">&#9817;</a></li>
+					<!-- Linha 6 -->
+					<li class="item-tabuleiro" data-pos="h6" ondrop="movimentos.drop(event,this)" ondragover="movimentos.allowDrop(event)">
+						
+					</li>
+					<li class="item-tabuleiro" data-pos="g6" ondrop="movimentos.drop(event,this)" ondragover="movimentos.allowDrop(event)">
+						
+					</li>
+					<li class="item-tabuleiro" data-pos="f6" ondrop="movimentos.drop(event,this)" ondragover="movimentos.allowDrop(event)">
+						
+					</li>
+					<li class="item-tabuleiro" data-pos="e6" ondrop="movimentos.drop(event,this)" ondragover="movimentos.allowDrop(event)">
+						
+					</li>
+					<li class="item-tabuleiro" data-pos="d6" ondrop="movimentos.drop(event,this)" ondragover="movimentos.allowDrop(event)">
+						
+					</li>
+					<li class="item-tabuleiro" data-pos="c6" ondrop="movimentos.drop(event,this)" ondragover="movimentos.allowDrop(event)">
+						
+					</li>
+					<li class="item-tabuleiro" data-pos="b6" ondrop="movimentos.drop(event,this)" ondragover="movimentos.allowDrop(event)">
+						
+					</li>
+					<li class="item-tabuleiro" data-pos="a6" ondrop="movimentos.drop(event,this)" ondragover="movimentos.allowDrop(event)">
+						
+					</li>
 
-				<!-- Linha 8 -->
-				<li class="item-tabuleiro" data-pos="h8"><a href="javascript:;">&#9820;</a></li>
-				<li class="item-tabuleiro" data-pos="g8"><a href="javascript:;">&#9822;</a></li>
-				<li class="item-tabuleiro" data-pos="f8"><a href="javascript:;">&#9821;</a><li>
-				<li class="item-tabuleiro" data-pos="e8"><a href="javascript:;">&#9819;</a></li>
-				<li class="item-tabuleiro" data-pos="d8"><a href="javascript:;">&#9818;</a></li>
-				<li class="item-tabuleiro" data-pos="c8"><a href="javascript:;">&#9821;</a></li>
-				<li class="item-tabuleiro" data-pos="b8"><a href="javascript:;">&#9822;</a></li>
-				<li class="item-tabuleiro" data-pos="a8"><a href="javascript:;">&#9820;</a></li>
+					<!-- Linha 7 -->
+					<li class="item-tabuleiro" data-pos="h7" ondrop="movimentos.drop(event,this)" ondragover="movimentos.allowDrop(event)">
+						<a href="javascript:;" draggable="true" ondragstart="movimentos.drag(event,this)" id="piao-preto-1" class="peca-preta">
+							&#9817;
+						</a>
+					</li>
+					<li class="item-tabuleiro" data-pos="g7" ondrop="movimentos.drop(event,this)" ondragover="movimentos.allowDrop(event)">
+						<a href="javascript:;" draggable="true" ondragstart="movimentos.drag(event,this)" id="piao-preto-2" class="peca-preta">
+							&#9817;
+						</a>
+					</li>
+					<li class="item-tabuleiro" data-pos="f7" ondrop="movimentos.drop(event,this)" ondragover="movimentos.allowDrop(event)">
+						<a href="javascript:;" draggable="true" ondragstart="movimentos.drag(event,this)" id="piao-preto-3" class="peca-preta">
+							&#9817;
+						</a>
+					<li>
+					<li class="item-tabuleiro" data-pos="e7" ondrop="movimentos.drop(event,this)" ondragover="movimentos.allowDrop(event)">
+						<a href="javascript:;" draggable="true" ondragstart="movimentos.drag(event,this)" id="piao-preto-4" class="peca-preta">
+							&#9817;
+						</a>
+					</li>
+					<li class="item-tabuleiro" data-pos="d7" ondrop="movimentos.drop(event,this)" ondragover="movimentos.allowDrop(event)">
+						<a href="javascript:;" draggable="true" ondragstart="movimentos.drag(event,this)" id="piao-preto-5" class="peca-preta">
+							&#9817;
+						</a>
+					</li>
+					<li class="item-tabuleiro" data-pos="c7" ondrop="movimentos.drop(event,this)" ondragover="movimentos.allowDrop(event)">
+						<a href="javascript:;" draggable="true" ondragstart="movimentos.drag(event,this)" id="piao-preto-6" class="peca-preta">
+							&#9817;
+						</a>
+					</li>
+					<li class="item-tabuleiro" data-pos="b7" ondrop="movimentos.drop(event,this)" ondragover="movimentos.allowDrop(event)">
+						<a href="javascript:;" draggable="true" ondragstart="movimentos.drag(event,this)" id="piao-preto-7" class="peca-preta">
+							&#9817;
+						</a>
+					</li>
+					<li class="item-tabuleiro" data-pos="a7" ondrop="movimentos.drop(event,this)" ondragover="movimentos.allowDrop(event)">
+						<a href="javascript:;" draggable="true" ondragstart="movimentos.drag(event,this)" id="piao-preto-8" class="peca-preta">
+							&#9817;
+						</a>
+					</li>
 
-			</ul>
+					<!-- Linha 8 -->
+					<li class="item-tabuleiro" data-pos="h8" ondrop="movimentos.drop(event,this)" ondragover="movimentos.allowDrop(event)">
+						<a href="javascript:;" draggable="true" ondragstart="movimentos.drag(event,this)" id="torre-preto-1" class="peca-preta">
+							&#9820;
+						</a>
+					</li>
+					<li class="item-tabuleiro" data-pos="g8" ondrop="movimentos.drop(event,this)" ondragover="movimentos.allowDrop(event)">
+						<a href="javascript:;" draggable="true" ondragstart="movimentos.drag(event,this)" id="cavalo-preto-1" class="peca-preta">
+							&#9822;
+						</a>
+					</li>
+					<li class="item-tabuleiro" data-pos="f8" ondrop="movimentos.drop(event,this)" ondragover="movimentos.allowDrop(event)">
+						<a href="javascript:;" draggable="true" ondragstart="movimentos.drag(event,this)" id="bispo-preto-1" class="peca-preta">
+							&#9821;
+						</a>
+					<li>
+					<li class="item-tabuleiro" data-pos="e8" ondrop="movimentos.drop(event,this)" ondragover="movimentos.allowDrop(event)">
+						<a href="javascript:;" draggable="true" ondragstart="movimentos.drag(event,this)" id="rainha-preto" class="peca-preta">
+							&#9819;
+						</a>
+					</li>
+					<li class="item-tabuleiro" data-pos="d8" ondrop="movimentos.drop(event,this)" ondragover="movimentos.allowDrop(event)">
+						<a href="javascript:;" draggable="true" ondragstart="movimentos.drag(event,this)" id="rei-preto" class="peca-preta">
+							&#9818;
+						</a>
+					</li>
+					<li class="item-tabuleiro" data-pos="c8" ondrop="movimentos.drop(event,this)" ondragover="movimentos.allowDrop(event)">
+						<a href="javascript:;" draggable="true" ondragstart="movimentos.drag(event,this)" id="bispo-preto-2" class="peca-preta">
+							&#9821;
+						</a>
+					</li>
+					<li class="item-tabuleiro" data-pos="b8" ondrop="movimentos.drop(event,this)" ondragover="movimentos.allowDrop(event)">
+						<a href="javascript:;" draggable="true" ondragstart="movimentos.drag(event,this)" id="cavalo-preto-2" class="peca-preta">
+							&#9822;
+						</a>
+					</li>
+					<li class="item-tabuleiro" data-pos="a8" ondrop="movimentos.drop(event,this)" ondragover="movimentos.allowDrop(event)">
+						<a href="javascript:;" draggable="true" ondragstart="movimentos.drag(event,this)" id="torre-preto-2" class="peca-preta">
+							&#9820;
+						</a>
+					</li>
+
+				</ul>
+			</div>
 		</div>
 		<!-- Footer -->
 		<footer id="footer-chess">

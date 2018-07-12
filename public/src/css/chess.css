@@ -5,34 +5,60 @@
 }
 
 #top-chess {
-  max-width: 800px;
   display: block;
-  margin: 0 auto;
+  margin: 10px auto;
+  border-bottom: 2px solid rgba(200, 200, 200, 0.8);
 }
 
-#top-chess h1 {
+#top-chess h1, #top-chess h2, #top-chess h3, #top-chess h4, #top-chess h5 {
   text-align: center;
 }
 
 #main-chess {
-  max-width: 800px;
-  display: block;
-  margin: 0 auto 15px;
+  display: flex;
+  margin: 0 0 15px 0;
+  text-align: center;
+  justify-content: center;
 }
 
-#lista-tabuleiro {
+#main-tabuleiro {
+  width: 100%;
   position: relative;
-  display: block;
   max-height: 800px;
+  max-width: 800px;
   padding: 0;
-  margin: 0;
-  list-style: none;
   border: 1px solid #969696;
 }
 
-#lista-tabuleiro .item-tabuleiro {
+#main-tabuleiro #lista-tabuleiro {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+#main-tabuleiro #lista-tabuleiro .item-tabuleiro {
   margin: 0;
   padding: 0;
   box-sizing: initial;
   float: left;
+}
+
+#main-tabuleiro #lista-tabuleiro .item-tabuleiro a {
+  text-decoration: none;
+}
+
+#main-tabuleiro #lista-tabuleiro .item-tabuleiro a.peca-branca {
+  color: rgba(255, 255, 255, 0.8);
+}
+
+#main-tabuleiro #lista-tabuleiro .item-tabuleiro a.peca-branca:hover {
+  color: white;
+}
+
+#main-tabuleiro #lista-tabuleiro .item-tabuleiro a.peca-preta {
+  color: rgba(0, 0, 0, 0.8);
+}
+
+#main-tabuleiro #lista-tabuleiro .item-tabuleiro a.peca-preta:hover {
+  color: black;
 }

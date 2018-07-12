@@ -4,48 +4,79 @@
 	E-Mail: diegofeitoza.dev@gmail.com
 
 */
+
 var chess = {
 	organizar: function(){
-		var largTab = $('#lista-tabuleiro').width()/8;
+		var $mainChess = $('#main-chess');
 		var $campoPeca = $('.item-tabuleiro');
 		var $tabuleiro = $('#lista-tabuleiro');
 		var linha = 1;
-		var blue = "blue", white = "white";
-		$campoPeca.css({
-			'width': (largTab)+'px',
-			'height': (largTab)+'px'
-		});
+		var coresTabuleiro = {
+			marromClaro: "rgb(210,180,140)",
+			marromEscuro:"rgb(139,69,19)"
+		};	
+
 		$tabuleiro.css({			
-			'height': ($('#lista-tabuleiro').width()+2)+'px'
+			'height': $tabuleiro.width()+'px'
 		});
 
-		for(var i=1; i <= $campoPeca.length; i++){	
+		$campoPeca.css({
+			'width': ($tabuleiro.width()/8)+'px',
+			'height': ($tabuleiro.height()/8)+'px'
+		});
+
+		$campoPeca.find('a').css({
+			'font-size': ($campoPeca.width()*0.65)+'px'
+		});
+
+		for(var i=1; i <= $campoPeca.length; i++){
 			if(i>1 && i%8==0){
 				console.log('Linha: ',linha);
-				if(linha%2 != 0){
-					console.log('Entrou na negação');				
-					$('[data-pos="h'+linha+'"]').css('background',white);
-					$('[data-pos="g'+linha+'"]').css('background',blue);
-					$('[data-pos="f'+linha+'"]').css('background',white);
-					$('[data-pos="e'+linha+'"]').css('background',blue);
-					$('[data-pos="d'+linha+'"]').css('background',white);
-					$('[data-pos="c'+linha+'"]').css('background',blue);
-					$('[data-pos="b'+linha+'"]').css('background',white);
-					$('[data-pos="a'+linha+'"]').css('background',blue);
-				}else{	
-					console.log('Entrou na verdade');			
-					$('[data-pos="h'+linha+'"]').css('background',blue);
-					$('[data-pos="g'+linha+'"]').css('background',white);
-					$('[data-pos="f'+linha+'"]').css('background',blue);
-					$('[data-pos="e'+linha+'"]').css('background',white);
-					$('[data-pos="d'+linha+'"]').css('background',blue);
-					$('[data-pos="c'+linha+'"]').css('background',white);
-					$('[data-pos="b'+linha+'"]').css('background',blue);
-					$('[data-pos="a'+linha+'"]').css('background',white);
+				if(linha%2 != 0){				
+					$('[data-pos="h'+linha+'"]').css('background',coresTabuleiro.marromClaro);
+					$('[data-pos="g'+linha+'"]').css('background',coresTabuleiro.marromEscuro);
+					$('[data-pos="f'+linha+'"]').css('background',coresTabuleiro.marromClaro);
+					$('[data-pos="e'+linha+'"]').css('background',coresTabuleiro.marromEscuro);
+					$('[data-pos="d'+linha+'"]').css('background',coresTabuleiro.marromClaro);
+					$('[data-pos="c'+linha+'"]').css('background',coresTabuleiro.marromEscuro);
+					$('[data-pos="b'+linha+'"]').css('background',coresTabuleiro.marromClaro);
+					$('[data-pos="a'+linha+'"]').css('background',coresTabuleiro.marromEscuro);
+				}else{				
+					$('[data-pos="h'+linha+'"]').css('background',coresTabuleiro.marromEscuro);
+					$('[data-pos="g'+linha+'"]').css('background',coresTabuleiro.marromClaro);
+					$('[data-pos="f'+linha+'"]').css('background',coresTabuleiro.marromEscuro);
+					$('[data-pos="e'+linha+'"]').css('background',coresTabuleiro.marromClaro);
+					$('[data-pos="d'+linha+'"]').css('background',coresTabuleiro.marromEscuro);
+					$('[data-pos="c'+linha+'"]').css('background',coresTabuleiro.marromClaro);
+					$('[data-pos="b'+linha+'"]').css('background',coresTabuleiro.marromEscuro);
+					$('[data-pos="a'+linha+'"]').css('background',coresTabuleiro.marromClaro);
 				}
 				linha++;
 			}	
 		}
+	}
+}
+
+var movimentos = {
+	allowDrop: function(ev) {
+	    ev.preventDefault();
+	},
+
+	drag: function(ev, peca) {
+	    ev.dataTransfer.setData("peca", peca.id);
+	    console.log($(peca).attr('id'));
+	},
+
+	drop: function(ev,posicao) {
+	    ev.preventDefault();
+	    if($(posicao).find('a').length > 0){
+	    	console.log('Tem Gente');
+	    }else{
+	    	console.log('Tá Livre');
+	    	var data = ev.dataTransfer.getData("peca");
+	    	$(posicao).append($('#'+data));
+	    	//ev.target.appendChild(document.getElementById(data));
+	    }    
 	}
 }
 
@@ -55,4 +86,12 @@ var init = function(){
 
 $(function(){
 	init();
+
+	//Alteração de tamanho para cada resize
+	$(window).resize(function(){
+		chess.organizar();
+		console.log('mexeu');
+	});
 });
+
+
