@@ -27,6 +27,20 @@ var sassProdOptions = {
   outputStyle: 'compressed'
 }
 
+//Configurar exportação de imagem
+var outDevImage = {
+      pngquant: true,
+      optipng: false,
+      zopflipng: true,
+      jpegRecompress: true,
+      mozjpeg: true,
+      guetzli: false,
+      gifsicle: true,
+      svgo: true,
+      concurrent: 10,
+      quiet: true
+    }
+
 //Nome do arquivo de deploy
 var nameArq = 'chess';
 
@@ -61,18 +75,7 @@ gulp.task('script', function () {
 //Otimização de imagem
 gulp.task('image', function () {
   gulp.src(imgFiles)
-    .pipe(image({
-      pngquant: true,
-      optipng: false,
-      zopflipng: true,
-      jpegRecompress: true,
-      mozjpeg: true,
-      guetzli: false,
-      gifsicle: true,
-      svgo: true,
-      concurrent: 10,
-      quiet: true // defaults to false
-    }))
+    .pipe(image(outDevImage))
     .pipe(gulp.dest(imgDest));
 });
 
