@@ -43,6 +43,20 @@
   float: left;
 }
 
+#main-tabuleiro #lista-tabuleiro .item-tabuleiro:hover {
+  cursor: pointer;
+  opacity: 0.8;
+}
+
+#main-tabuleiro #lista-tabuleiro .item-tabuleiro[data-pos="h1"]:after {
+  content: "1";
+  font-size: 1em;
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 15px;
+}
+
 #main-tabuleiro #lista-tabuleiro .item-tabuleiro a {
   text-decoration: none;
 }

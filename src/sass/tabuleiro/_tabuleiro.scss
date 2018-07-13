@@ -17,6 +17,22 @@
 			box-sizing: initial;
 	    	float: left;
 
+	    	&:hover{
+	    		cursor: pointer;
+	    		opacity: 0.8;
+	    	}
+
+	    	&[data-pos="h1"]{
+	    		&:after{
+	    			content:"1";
+	    			font-size: 1em;
+	    			display:block;
+	    			position:absolute;
+	    			top:0;
+	    			left:15px;
+	    		}
+	    	}
+
 	    	a{
    				text-decoration: none;
 

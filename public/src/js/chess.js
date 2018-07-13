@@ -58,23 +58,25 @@ var chess = {
 }
 
 var movimentos = {
+	pecaSalva:{
+		id: ""
+	},
 	allowDrop: function(ev) {
 	    ev.preventDefault();
 	},
 
 	drag: function(ev, peca) {
-	    ev.dataTransfer.setData("peca", peca.id);
+	    movimentos.pecaSalva.id = $(peca).attr('id');
+	    console.log(movimentos.pecaSalva.id);
 	},
-
 	drop: function(ev,posicao) {
 	    ev.preventDefault();
 	    if($(posicao).find('a').length > 0){
 	    	console.log('Tem Gente');
 	    }else{
 	    	console.log('Tá Livre');
-	    	var data = ev.dataTransfer.getData("peca");
-	    	$(posicao).append($('#'+data));
-	    	//ev.target.appendChild(document.getElementById(data));
+	    	$(posicao).append($('#'+movimentos.pecaSalva.id));
+	    	movimentos.pecaSalva.id="";
 	    }
 	}
 }
@@ -93,19 +95,39 @@ $(function(){
 	});
 
 	//Events
-	var pecasBrancas = document.getElementsByClassName("peca-branca");
-	pecasBrancas.addEventListener("click", function(){
-		movimentos.drag(event, this);
+	$('.peca-branca').on('click', function(){
+		console.log(this);
+		movimentos.drag(event,this);
+	});
+
+	$('.peca-branca').on('dragstart',function(){
+		movimentos.drag(event,this);
+	});
+
+	$('.peca-preta').on('click', function(){
+		console.log(this);
+		movimentos.drag(event,this);
+	});
+
+	$('.peca-preta').on('dragstart',function(){
+		movimentos.drag(event,this);
 	});
 
 	//Events
 	$('.item-tabuleiro').on('click',function(){
-		if($('.item-tabuleiro').find('a').length > 0){
-			console.log(this);
+		if($(this).find('a').length > 0){
+			console.log('não livre');
 		}else{
 			movimentos.drop(event, this);
-		}
-		
+		}		
+	});
+
+	$('.item-tabuleiro').on('drop',function(){
+		movimentos.drop(event,this);
+	});
+
+	$('.item-tabuleiro').on('dragover',function(){
+		movimentos.allowDrop(event);
 	});
 });
 
