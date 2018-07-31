@@ -48,13 +48,208 @@
   opacity: 0.8;
 }
 
+#main-tabuleiro #lista-tabuleiro .item-tabuleiro[data-pos="h1"] {
+  position: relative;
+}
+
 #main-tabuleiro #lista-tabuleiro .item-tabuleiro[data-pos="h1"]:after {
   content: "1";
   font-size: 1em;
   display: block;
   position: absolute;
+  top: 40%;
+  left: 0;
+}
+
+#main-tabuleiro #lista-tabuleiro .item-tabuleiro[data-pos="h1"]:before {
+  content: "h";
+  font-size: 1em;
+  display: block;
+  position: absolute;
   top: 0;
-  left: 15px;
+  right: 50%;
+}
+
+#main-tabuleiro #lista-tabuleiro .item-tabuleiro[data-pos="h2"] {
+  position: relative;
+}
+
+#main-tabuleiro #lista-tabuleiro .item-tabuleiro[data-pos="h2"]:after {
+  content: "2";
+  font-size: 1em;
+  display: block;
+  position: absolute;
+  top: 40%;
+  left: 0;
+}
+
+#main-tabuleiro #lista-tabuleiro .item-tabuleiro[data-pos="h3"] {
+  position: relative;
+}
+
+#main-tabuleiro #lista-tabuleiro .item-tabuleiro[data-pos="h3"]:after {
+  content: "3";
+  font-size: 1em;
+  display: block;
+  position: absolute;
+  top: 40%;
+  left: 0;
+}
+
+#main-tabuleiro #lista-tabuleiro .item-tabuleiro[data-pos="h4"] {
+  position: relative;
+}
+
+#main-tabuleiro #lista-tabuleiro .item-tabuleiro[data-pos="h4"]:after {
+  content: "4";
+  font-size: 1em;
+  display: block;
+  position: absolute;
+  top: 40%;
+  left: 0;
+}
+
+#main-tabuleiro #lista-tabuleiro .item-tabuleiro[data-pos="h5"] {
+  position: relative;
+}
+
+#main-tabuleiro #lista-tabuleiro .item-tabuleiro[data-pos="h5"]:after {
+  content: "5";
+  font-size: 1em;
+  display: block;
+  position: absolute;
+  top: 40%;
+  left: 0;
+}
+
+#main-tabuleiro #lista-tabuleiro .item-tabuleiro[data-pos="h6"] {
+  position: relative;
+}
+
+#main-tabuleiro #lista-tabuleiro .item-tabuleiro[data-pos="h6"]:after {
+  content: "6";
+  font-size: 1em;
+  display: block;
+  position: absolute;
+  top: 40%;
+  left: 0;
+}
+
+#main-tabuleiro #lista-tabuleiro .item-tabuleiro[data-pos="h7"] {
+  position: relative;
+}
+
+#main-tabuleiro #lista-tabuleiro .item-tabuleiro[data-pos="h7"]:after {
+  content: "7";
+  font-size: 1em;
+  display: block;
+  position: absolute;
+  top: 40%;
+  left: 0;
+}
+
+#main-tabuleiro #lista-tabuleiro .item-tabuleiro[data-pos="h8"] {
+  position: relative;
+}
+
+#main-tabuleiro #lista-tabuleiro .item-tabuleiro[data-pos="h8"]:after {
+  content: "8";
+  font-size: 1em;
+  display: block;
+  position: absolute;
+  top: 40%;
+  left: 0;
+}
+
+#main-tabuleiro #lista-tabuleiro .item-tabuleiro[data-pos="g1"] {
+  position: relative;
+}
+
+#main-tabuleiro #lista-tabuleiro .item-tabuleiro[data-pos="g1"]:before {
+  content: "g";
+  font-size: 1em;
+  display: block;
+  position: absolute;
+  top: 0;
+  right: 50%;
+}
+
+#main-tabuleiro #lista-tabuleiro .item-tabuleiro[data-pos="f1"] {
+  position: relative;
+}
+
+#main-tabuleiro #lista-tabuleiro .item-tabuleiro[data-pos="f1"]:before {
+  content: "f";
+  font-size: 1em;
+  display: block;
+  position: absolute;
+  top: 0;
+  right: 50%;
+}
+
+#main-tabuleiro #lista-tabuleiro .item-tabuleiro[data-pos="e1"] {
+  position: relative;
+}
+
+#main-tabuleiro #lista-tabuleiro .item-tabuleiro[data-pos="e1"]:before {
+  content: "e";
+  font-size: 1em;
+  display: block;
+  position: absolute;
+  top: 0;
+  right: 50%;
+}
+
+#main-tabuleiro #lista-tabuleiro .item-tabuleiro[data-pos="d1"] {
+  position: relative;
+}
+
+#main-tabuleiro #lista-tabuleiro .item-tabuleiro[data-pos="d1"]:before {
+  content: "d";
+  font-size: 1em;
+  display: block;
+  position: absolute;
+  top: 0;
+  right: 50%;
+}
+
+#main-tabuleiro #lista-tabuleiro .item-tabuleiro[data-pos="c1"] {
+  position: relative;
+}
+
+#main-tabuleiro #lista-tabuleiro .item-tabuleiro[data-pos="c1"]:before {
+  content: "c";
+  font-size: 1em;
+  display: block;
+  position: absolute;
+  top: 0;
+  right: 50%;
+}
+
+#main-tabuleiro #lista-tabuleiro .item-tabuleiro[data-pos="b1"] {
+  position: relative;
+}
+
+#main-tabuleiro #lista-tabuleiro .item-tabuleiro[data-pos="b1"]:before {
+  content: "b";
+  font-size: 1em;
+  display: block;
+  position: absolute;
+  top: 0;
+  right: 50%;
+}
+
+#main-tabuleiro #lista-tabuleiro .item-tabuleiro[data-pos="a1"] {
+  position: relative;
+}
+
+#main-tabuleiro #lista-tabuleiro .item-tabuleiro[data-pos="a1"]:before {
+  content: "a";
+  font-size: 1em;
+  display: block;
+  position: absolute;
+  top: 0;
+  right: 50%;
 }
 
 #main-tabuleiro #lista-tabuleiro .item-tabuleiro a {

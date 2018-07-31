@@ -59,25 +59,38 @@ var chess = {
 
 var movimentos = {
 	pecaSalva:{
-		id: ""
+		id: "",
+		casaAnt: "",
+		casaNova: ""
 	},
 	allowDrop: function(ev) {
 	    ev.preventDefault();
 	},
-
 	drag: function(ev, peca) {
+		var pai = $(peca).parent('[data-pos]');
+		movimentos.pecaSalva.casaAnt = $(pai).attr('data-pos');
+    	console.log('========\nPosição partida: '+movimentos.pecaSalva.casaAnt); //Posição que a peça foi!
 	    movimentos.pecaSalva.id = $(peca).attr('id');
-	    console.log(movimentos.pecaSalva.id);
+	    console.log('Peça: '+movimentos.pecaSalva.id);
 	},
 	drop: function(ev,posicao) {
 	    ev.preventDefault();
 	    if($(posicao).find('a').length > 0){
+	    	console.log('Posição tentativa: '+$(posicao) );
 	    	console.log('Tem Gente');
 	    }else{
 	    	console.log('Tá Livre');
+	    	movimentos.pecaSalva.casaNova = $(posicao).attr('data-pos')
+	    	console.log('Posição chegada: '+ movimentos.pecaSalva.casaNova); //Posição que a peça foi!
 	    	$(posicao).append($('#'+movimentos.pecaSalva.id));
-	    	movimentos.pecaSalva.id="";
+	    	console.log('=====Jogada====\n'+movimentos.pecaSalva.id+'|'+movimentos.pecaSalva.casaAnt+'-'+movimentos.pecaSalva.casaNova+'\n==========');	
+	    	movimentos.limparDadosPeca();    		    	
 	    }
+	},
+	limparDadosPeca: function(){		
+    	movimentos.pecaSalva.id="";
+    	movimentos.pecaSalva.casaAnt="";
+    	movimentos.pecaSalva.casaNova="";
 	}
 }
 
@@ -91,12 +104,10 @@ $(function(){
 	//Alteração de tamanho para cada resize
 	$(window).resize(function(){
 		chess.organizar();
-		console.log('mexeu');
 	});
 
 	//Events
 	$('.peca-branca').on('click', function(){
-		console.log(this);
 		movimentos.drag(event,this);
 	});
 
@@ -105,7 +116,6 @@ $(function(){
 	});
 
 	$('.peca-preta').on('click', function(){
-		console.log(this);
 		movimentos.drag(event,this);
 	});
 
@@ -117,7 +127,7 @@ $(function(){
 	$('.item-tabuleiro').on('click',function(){
 		if($(this).find('a').length > 0){
 			console.log('não livre');
-		}else{
+		}else{			
 			movimentos.drop(event, this);
 		}		
 	});

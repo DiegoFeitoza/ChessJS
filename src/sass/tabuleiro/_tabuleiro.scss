@@ -23,13 +23,183 @@
 	    	}
 
 	    	&[data-pos="h1"]{
+	    		position:relative;
 	    		&:after{
 	    			content:"1";
 	    			font-size: 1em;
 	    			display:block;
 	    			position:absolute;
-	    			top:0;
-	    			left:15px;
+	    			top:40%;
+	    			left:0;
+	    		}
+	    		&:before{
+	    			content:"h";
+	    			font-size: 1em;
+	    			display:block;
+	    			position:absolute;
+	    			top: 0;
+    				right: 50%;
+	    		}
+	    	}
+	    	&[data-pos="h2"]{
+	    		position:relative;
+	    		&:after{
+	    			content:"2";
+	    			font-size: 1em;
+	    			display:block;
+	    			position:absolute;
+	    			top:40%;
+	    			left:0;
+	    		}
+	    	}
+	    	&[data-pos="h3"]{
+	    		position:relative;
+	    		&:after{
+	    			content:"3";
+	    			font-size: 1em;
+	    			display:block;
+	    			position:absolute;
+	    			top:40%;
+	    			left:0;
+	    		}
+	    	}
+	    	&[data-pos="h4"]{
+	    		position:relative;
+	    		&:after{
+	    			content:"4";
+	    			font-size: 1em;
+	    			display:block;
+	    			position:absolute;
+	    			top:40%;
+	    			left:0;
+	    		}
+	    	}
+	    	&[data-pos="h5"]{
+	    		position:relative;
+	    		&:after{
+	    			content:"5";
+	    			font-size: 1em;
+	    			display:block;
+	    			position:absolute;
+	    			top:40%;
+	    			left:0;
+	    		}
+	    	}
+	    	&[data-pos="h6"]{
+	    		position:relative;
+	    		&:after{
+	    			content:"6";
+	    			font-size: 1em;
+	    			display:block;
+	    			position:absolute;
+	    			top:40%;
+	    			left:0;
+	    		}
+	    	}
+	    	&[data-pos="h7"]{
+	    		position:relative;
+	    		&:after{
+	    			content:"7";
+	    			font-size: 1em;
+	    			display:block;
+	    			position:absolute;
+	    			top:40%;
+	    			left:0;
+	    		}
+	    	}
+	    	&[data-pos="h8"]{
+	    		position:relative;
+	    		&:after{
+	    			content:"8";
+	    			font-size: 1em;
+	    			display:block;
+	    			position:absolute;
+	    			top:40%;
+	    			left:0;
+	    		}
+	    	}
+
+	    	&[data-pos="g1"]{
+	    		position:relative;
+	    		&:before{
+	    			content:"g";
+	    			font-size: 1em;
+	    			display:block;
+	    			position:absolute;
+	    			top: 0;
+    				right: 50%;
+	    		}
+	    	}
+
+	    	&[data-pos="f1"]{
+	    		position:relative;
+	    		&:before{
+	    			content:"f";
+	    			font-size: 1em;
+	    			display:block;
+	    			position:absolute;
+	    			top: 0;
+    				right: 50%;
+	    		}
+	    	}
+
+	    	&[data-pos="e1"]{
+	    		position:relative;
+	    		&:before{
+	    			content:"e";
+	    			font-size: 1em;
+	    			display:block;
+	    			position:absolute;
+	    			top: 0;
+    				right: 50%;
+	    		}
+	    	}
+
+	    	&[data-pos="d1"]{
+	    		position:relative;
+	    		&:before{
+	    			content:"d";
+	    			font-size: 1em;
+	    			display:block;
+	    			position:absolute;
+	    			top: 0;
+    				right: 50%;
+	    		}
+	    	}
+
+	    	&[data-pos="c1"]{
+	    		position:relative;
+	    		&:before{
+	    			content:"c";
+	    			font-size: 1em;
+	    			display:block;
+	    			position:absolute;
+	    			top: 0;
+    				right: 50%;
+	    		}
+	    	}
+
+	    	&[data-pos="b1"]{
+	    		position:relative;
+	    		&:before{
+	    			content:"b";
+	    			font-size: 1em;
+	    			display:block;
+	    			position:absolute;
+	    			top: 0;
+    				right: 50%;
+	    		}
+	    	}
+
+	    	&[data-pos="a1"]{
+	    		position:relative;
+	    		&:before{
+	    			content:"a";
+	    			font-size: 1em;
+	    			display:block;
+	    			position:absolute;
+	    			top: 0;
+    				right: 50%;
 	    		}
 	    	}
 
