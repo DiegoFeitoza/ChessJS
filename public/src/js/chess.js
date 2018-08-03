@@ -10,6 +10,8 @@ var chess = {
 		var $mainChess = $('#main-chess');
 		var $campoPeca = $('.item-tabuleiro');
 		var $tabuleiro = $('#lista-tabuleiro');
+		var telaH = $(window).height();
+		var telaW = $(window).width();
 		var linha = 1;
 		var coresTabuleiro = {
 			marromClaro: "rgb(210,180,140)",
@@ -17,7 +19,8 @@ var chess = {
 		};	
 
 		$tabuleiro.css({			
-			'height': $tabuleiro.width()+'px'
+			'height': (telaH-50) +'px',
+			'width': (telaH-50) +'px'
 		});
 
 		$campoPeca.css({
@@ -63,21 +66,31 @@ var movimentos = {
 		casaAnt: "",
 		casaNova: ""
 	},
+	//Após o soltar
 	allowDrop: function(ev) {
 	    ev.preventDefault();
 	},
+	//Pega
 	drag: function(ev, peca) {
 		var pai = $(peca).parent('[data-pos]');
 		movimentos.pecaSalva.casaAnt = $(pai).attr('data-pos');
     	console.log('========\nPosição partida: '+movimentos.pecaSalva.casaAnt); //Posição que a peça foi!
 	    movimentos.pecaSalva.id = $(peca).attr('id');
 	    console.log('Peça: '+movimentos.pecaSalva.id);
+	    movimentosValidos(movimentos.pecaSalva.id);
 	},
+	//Solta
 	drop: function(ev,posicao) {
 	    ev.preventDefault();
 	    if($(posicao).find('a').length > 0){
-	    	console.log('Posição tentativa: '+$(posicao) );
+	    	console.log('Posição tentativa: '+$(posicao).attr('data-pos'));
+	    	var pecaRemover = $(posicao).find('a');
+	    	console.log($(posicao).find('a'));
 	    	console.log('Tem Gente');
+	    	$(posicao).text('');
+	    	$(posicao).append($('#'+movimentos.pecaSalva.id));
+	    	console.log('Peca Removida: ', $(pecaRemover).attr('id'));
+	    	console.log('\nPeca que comeu: ', movimentos.pecaSalva.id);
 	    }else{
 	    	console.log('Tá Livre');
 	    	movimentos.pecaSalva.casaNova = $(posicao).attr('data-pos')
@@ -92,6 +105,15 @@ var movimentos = {
     	movimentos.pecaSalva.casaAnt="";
     	movimentos.pecaSalva.casaNova="";
 	}
+}
+
+var movimentosValidos = function(peca){
+	var pecaTrat = peca.split('-');
+	pecaTrat = pecaTrat[0];
+
+	console.log('\nPeça a calcular o movimento: '+pecaTrat);
+
+
 }
 
 var init = function(){

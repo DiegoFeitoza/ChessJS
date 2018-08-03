@@ -22,12 +22,11 @@
 }
 
 #main-tabuleiro {
-  width: 100%;
   position: relative;
+  margin-top: 1em;
   max-height: 800px;
   max-width: 800px;
   padding: 0;
-  border: 1px solid #969696;
 }
 
 #main-tabuleiro #lista-tabuleiro {
@@ -55,19 +54,31 @@
 #main-tabuleiro #lista-tabuleiro .item-tabuleiro[data-pos="h1"]:after {
   content: "1";
   font-size: 1em;
-  display: block;
-  position: absolute;
-  top: 40%;
-  left: 0;
-}
-
-#main-tabuleiro #lista-tabuleiro .item-tabuleiro[data-pos="h1"]:before {
-  content: "h";
-  font-size: 1em;
+  font-weight: bold;
   display: block;
   position: absolute;
   top: 0;
-  right: 50%;
+  left: -1.5em;
+  height: 100%;
+  line-height: 5em;
+  width: 1.5em;
+  background-color: tan;
+  border-right: 0.5px solid rgba(0, 0, 0, 0.5);
+  color: rgba(139, 69, 19, 0.5);
+}
+
+#main-tabuleiro #lista-tabuleiro .item-tabuleiro[data-pos="h1"]:before {
+  content: "H";
+  top: -1em;
+  background-color: tan;
+  border-bottom: 0.5px solid rgba(0, 0, 0, 0.5);
+  font-size: 1em;
+  font-weight: bold;
+  display: block;
+  position: absolute;
+  width: 100%;
+  text-align: center;
+  color: rgba(139, 69, 19, 0.5);
 }
 
 #main-tabuleiro #lista-tabuleiro .item-tabuleiro[data-pos="h2"] {
@@ -77,10 +88,17 @@
 #main-tabuleiro #lista-tabuleiro .item-tabuleiro[data-pos="h2"]:after {
   content: "2";
   font-size: 1em;
+  font-weight: bold;
   display: block;
   position: absolute;
-  top: 40%;
-  left: 0;
+  top: 0;
+  left: -1.5em;
+  height: 100%;
+  line-height: 5em;
+  width: 1.5em;
+  background-color: saddlebrown;
+  border-right: 0.5px solid rgba(0, 0, 0, 0.5);
+  color: rgba(210, 180, 140, 0.5);
 }
 
 #main-tabuleiro #lista-tabuleiro .item-tabuleiro[data-pos="h3"] {
@@ -90,10 +108,17 @@
 #main-tabuleiro #lista-tabuleiro .item-tabuleiro[data-pos="h3"]:after {
   content: "3";
   font-size: 1em;
+  font-weight: bold;
   display: block;
   position: absolute;
-  top: 40%;
-  left: 0;
+  top: 0;
+  left: -1.5em;
+  height: 100%;
+  line-height: 5em;
+  width: 1.5em;
+  background-color: tan;
+  border-right: 0.5px solid rgba(0, 0, 0, 0.5);
+  color: rgba(139, 69, 19, 0.5);
 }
 
 #main-tabuleiro #lista-tabuleiro .item-tabuleiro[data-pos="h4"] {
@@ -103,10 +128,17 @@
 #main-tabuleiro #lista-tabuleiro .item-tabuleiro[data-pos="h4"]:after {
   content: "4";
   font-size: 1em;
+  font-weight: bold;
   display: block;
   position: absolute;
-  top: 40%;
-  left: 0;
+  top: 0;
+  left: -1.5em;
+  height: 100%;
+  line-height: 5em;
+  width: 1.5em;
+  background-color: saddlebrown;
+  border-right: 0.5px solid rgba(0, 0, 0, 0.5);
+  color: rgba(210, 180, 140, 0.5);
 }
 
 #main-tabuleiro #lista-tabuleiro .item-tabuleiro[data-pos="h5"] {
@@ -116,10 +148,17 @@
 #main-tabuleiro #lista-tabuleiro .item-tabuleiro[data-pos="h5"]:after {
   content: "5";
   font-size: 1em;
+  font-weight: bold;
   display: block;
   position: absolute;
-  top: 40%;
-  left: 0;
+  top: 0;
+  left: -1.5em;
+  height: 100%;
+  line-height: 5em;
+  width: 1.5em;
+  background-color: tan;
+  border-right: 0.5px solid rgba(0, 0, 0, 0.5);
+  color: rgba(139, 69, 19, 0.5);
 }
 
 #main-tabuleiro #lista-tabuleiro .item-tabuleiro[data-pos="h6"] {
@@ -129,10 +168,17 @@
 #main-tabuleiro #lista-tabuleiro .item-tabuleiro[data-pos="h6"]:after {
   content: "6";
   font-size: 1em;
+  font-weight: bold;
   display: block;
   position: absolute;
-  top: 40%;
-  left: 0;
+  top: 0;
+  left: -1.5em;
+  height: 100%;
+  line-height: 5em;
+  width: 1.5em;
+  background-color: saddlebrown;
+  border-right: 0.5px solid rgba(0, 0, 0, 0.5);
+  color: rgba(210, 180, 140, 0.5);
 }
 
 #main-tabuleiro #lista-tabuleiro .item-tabuleiro[data-pos="h7"] {
@@ -142,10 +188,17 @@
 #main-tabuleiro #lista-tabuleiro .item-tabuleiro[data-pos="h7"]:after {
   content: "7";
   font-size: 1em;
+  font-weight: bold;
   display: block;
   position: absolute;
-  top: 40%;
-  left: 0;
+  top: 0;
+  left: -1.5em;
+  height: 100%;
+  line-height: 5em;
+  width: 1.5em;
+  background-color: tan;
+  border-right: 0.5px solid rgba(0, 0, 0, 0.5);
+  color: rgba(139, 69, 19, 0.5);
 }
 
 #main-tabuleiro #lista-tabuleiro .item-tabuleiro[data-pos="h8"] {
@@ -155,10 +208,17 @@
 #main-tabuleiro #lista-tabuleiro .item-tabuleiro[data-pos="h8"]:after {
   content: "8";
   font-size: 1em;
+  font-weight: bold;
   display: block;
   position: absolute;
-  top: 40%;
-  left: 0;
+  top: 0;
+  left: -1.5em;
+  height: 100%;
+  line-height: 5em;
+  width: 1.5em;
+  background-color: saddlebrown;
+  border-right: 0.5px solid rgba(0, 0, 0, 0.5);
+  color: rgba(210, 180, 140, 0.5);
 }
 
 #main-tabuleiro #lista-tabuleiro .item-tabuleiro[data-pos="g1"] {
@@ -166,12 +226,17 @@
 }
 
 #main-tabuleiro #lista-tabuleiro .item-tabuleiro[data-pos="g1"]:before {
-  content: "g";
+  content: "G";
+  top: -1em;
+  background-color: saddlebrown;
+  border-bottom: 0.5px solid rgba(0, 0, 0, 0.5);
   font-size: 1em;
+  font-weight: bold;
   display: block;
   position: absolute;
-  top: 0;
-  right: 50%;
+  width: 100%;
+  text-align: center;
+  color: rgba(210, 180, 140, 0.5);
 }
 
 #main-tabuleiro #lista-tabuleiro .item-tabuleiro[data-pos="f1"] {
@@ -179,12 +244,17 @@
 }
 
 #main-tabuleiro #lista-tabuleiro .item-tabuleiro[data-pos="f1"]:before {
-  content: "f";
+  content: "F";
+  top: -1em;
+  background-color: tan;
+  border-bottom: 0.5px solid rgba(0, 0, 0, 0.5);
   font-size: 1em;
+  font-weight: bold;
   display: block;
   position: absolute;
-  top: 0;
-  right: 50%;
+  width: 100%;
+  text-align: center;
+  color: rgba(139, 69, 19, 0.5);
 }
 
 #main-tabuleiro #lista-tabuleiro .item-tabuleiro[data-pos="e1"] {
@@ -192,12 +262,17 @@
 }
 
 #main-tabuleiro #lista-tabuleiro .item-tabuleiro[data-pos="e1"]:before {
-  content: "e";
+  content: "E";
+  top: -1em;
+  background-color: saddlebrown;
+  border-bottom: 0.5px solid rgba(0, 0, 0, 0.5);
   font-size: 1em;
+  font-weight: bold;
   display: block;
   position: absolute;
-  top: 0;
-  right: 50%;
+  width: 100%;
+  text-align: center;
+  color: rgba(210, 180, 140, 0.5);
 }
 
 #main-tabuleiro #lista-tabuleiro .item-tabuleiro[data-pos="d1"] {
@@ -205,12 +280,17 @@
 }
 
 #main-tabuleiro #lista-tabuleiro .item-tabuleiro[data-pos="d1"]:before {
-  content: "d";
+  content: "D";
+  top: -1em;
+  background-color: tan;
+  border-bottom: 0.5px solid rgba(0, 0, 0, 0.5);
   font-size: 1em;
+  font-weight: bold;
   display: block;
   position: absolute;
-  top: 0;
-  right: 50%;
+  width: 100%;
+  text-align: center;
+  color: rgba(139, 69, 19, 0.5);
 }
 
 #main-tabuleiro #lista-tabuleiro .item-tabuleiro[data-pos="c1"] {
@@ -218,12 +298,17 @@
 }
 
 #main-tabuleiro #lista-tabuleiro .item-tabuleiro[data-pos="c1"]:before {
-  content: "c";
+  content: "C";
+  top: -1em;
+  background-color: saddlebrown;
+  border-bottom: 0.5px solid rgba(0, 0, 0, 0.5);
   font-size: 1em;
+  font-weight: bold;
   display: block;
   position: absolute;
-  top: 0;
-  right: 50%;
+  width: 100%;
+  text-align: center;
+  color: rgba(210, 180, 140, 0.5);
 }
 
 #main-tabuleiro #lista-tabuleiro .item-tabuleiro[data-pos="b1"] {
@@ -231,12 +316,17 @@
 }
 
 #main-tabuleiro #lista-tabuleiro .item-tabuleiro[data-pos="b1"]:before {
-  content: "b";
+  content: "B";
+  top: -1em;
+  background-color: tan;
+  border-bottom: 0.5px solid rgba(0, 0, 0, 0.5);
   font-size: 1em;
+  font-weight: bold;
   display: block;
   position: absolute;
-  top: 0;
-  right: 50%;
+  width: 100%;
+  text-align: center;
+  color: rgba(139, 69, 19, 0.5);
 }
 
 #main-tabuleiro #lista-tabuleiro .item-tabuleiro[data-pos="a1"] {
@@ -244,12 +334,17 @@
 }
 
 #main-tabuleiro #lista-tabuleiro .item-tabuleiro[data-pos="a1"]:before {
-  content: "a";
+  content: "A";
+  top: -1em;
+  background-color: saddlebrown;
+  border-bottom: 0.5px solid rgba(0, 0, 0, 0.5);
   font-size: 1em;
+  font-weight: bold;
   display: block;
   position: absolute;
-  top: 0;
-  right: 50%;
+  width: 100%;
+  text-align: center;
+  color: rgba(210, 180, 140, 0.5);
 }
 
 #main-tabuleiro #lista-tabuleiro .item-tabuleiro a {
