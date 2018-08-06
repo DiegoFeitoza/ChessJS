@@ -85,10 +85,12 @@ var movimentos = {
 			($(pecaRemover).attr('id') != movimentos.pecaSalva.id) ? movimentosValidos.comePeca(ev,pecaRemover,posicao) : console.log('Mesma peça Fii');	    	
 	    }else{
 	    	movimentos.pecaSalva.casaNova = $(posicao).attr('data-pos');
-	    	movimentosValidos.movimento(ev,movimentosValidos.retornaPeca(movimentos.pecaSalva.id),movimentos.pecaSalva.casaAnt, movimentos.pecaSalva.casaNova);	    	
-	    	$(posicao).append($('#'+movimentos.pecaSalva.id));
-	    	console.log('========Jogada========\n'+movimentos.pecaSalva.id+'|'+movimentos.pecaSalva.casaAnt+'-'+movimentos.pecaSalva.casaNova+'\n===================');	
-	    	movimentos.limparDadosPeca();    		    	
+
+	    	if(movimentosValidos.movimento(ev,movimentosValidos.retornaPeca(movimentos.pecaSalva.id), movimentos.pecaSalva.casaAnt, movimentos.pecaSalva.casaNova, movimentosValidos.retornaCor(movimentos.pecaSalva.id))){	    	
+		    	$(posicao).append($('#'+movimentos.pecaSalva.id));
+		    	console.log('========Jogada========\n'+movimentos.pecaSalva.id+'|'+movimentos.pecaSalva.casaAnt+'-'+movimentos.pecaSalva.casaNova+'\n===================');	
+		    	movimentos.limparDadosPeca();
+	    	}    		    	
 	    }
 	},
 	//Limpar os dados da peça salva
@@ -101,52 +103,156 @@ var movimentos = {
 
 var movimentosValidos = {
 	retornaPeca: function(peca){
-		var pecaTrat = peca.split('-'),
+		var pecaTrat = peca.split('-');
 			pecaTrat = pecaTrat[0]
 		return pecaTrat;
 	},
 	retornaCor: function(peca){
-		var cor = peca.split('-'),
-			cor = cor[1];
-		return cor;
+		var pecaCor = peca.split('-');
+			pecaCor = pecaCor[1];
+		return pecaCor;
 	},
 	comePeca: function(ev, pecaRemover, posicao){		
 	    ev.preventDefault();	    
     	movimentos.pecaSalva.casaNova = $(posicao).attr('data-pos');
+    	var posicoes = ['a','b','c','d','e','f','g','h'];
+    	var podeComerCasa = false;
+
+    	var comerPecas = {
+    		piao: function(){
+    			var cor = movimentosValidos.retornaCor(movimentos.pecaSalva.id);
+    			for(var i=0; i < posicoes.length; i++){
+					if(posicoes[i] == movimentos.pecaSalva.casaAnt.charAt(0)){
+						if(posicoes[i+1] == movimentos.pecaSalva.casaNova.charAt(0) || posicoes[i-1] == movimentos.pecaSalva.casaNova.charAt(0)){
+							podeComerCasa = true;
+							console.log('Pode comer');
+						}				
+				    }
+				}
+
+    			if(podeComerCasa){     				
+    				if(cor == 'branco' && ((parseInt(movimentos.pecaSalva.casaAnt.charAt(1))+1) == movimentos.pecaSalva.casaNova.charAt(1))){
+    					console.log('Pode');   				
+		    			$(posicao).text('');
+				    	$(posicao).append($('#'+movimentos.pecaSalva.id));
+			    		console.log('\n====Movimentos ComePeça====\nPosição final: '+$(posicao).attr('data-pos'));
+				    	console.log('Peca Removida: ', $(pecaRemover).attr('id'));
+				    	console.log('Peca que comeu: ', movimentos.pecaSalva.id,'\n=======================');
+				    	console.log('========Jogada========\n'+movimentos.pecaSalva.id+'|'+movimentos.pecaSalva.casaAnt+'-'+movimentos.pecaSalva.casaNova+'\nRemoveu: '+$(pecaRemover).attr('id')+ '\n===================');	
+				    	
+				    	movimentos.limparDadosPeca();
+    				}else{
+    					console.log('Pião só come para o lado == carangue')
+    				}
+    			}else{
+    				console.log('Não pode');
+    			}
+    		}
+    	}
+
     	if(movimentosValidos.retornaCor($(pecaRemover).attr('id')) != movimentosValidos.retornaCor(movimentos.pecaSalva.id)){
     		console.log('Cores diferentes - Vai na fé');
-	    	$(posicao).text('');
-	    	$(posicao).append($('#'+movimentos.pecaSalva.id));
+    		var peca = movimentosValidos.retornaPeca(movimentos.pecaSalva.id);
 
-    		console.log('\n====Movimentos ComePeça====\nPosição final: '+$(posicao).attr('data-pos'));
-	    	console.log('Peca Removida: ', $(pecaRemover).attr('id'));
-	    	console.log('Peca que comeu: ', movimentos.pecaSalva.id,'\n=======================');
-	    	console.log('========Jogada========\n'+movimentos.pecaSalva.id+'|'+movimentos.pecaSalva.casaAnt+'-'+movimentos.pecaSalva.casaNova+'\nRemoveu: '+$(pecaRemover).attr('id')+ '\n===================');	
-	    	
-	    	movimentos.limparDadosPeca();
+    		switch(peca){
+    			case 'piao':
+    				comerPecas.piao();
+    				break; 
+    		}
+
     	}else{
     		console.log('Cores iguais Fii - Não podes comer (Vs.9)');
     	}    	
 	},
-	movimento: function(ev, peca, posicaoAnt, posicaoNova){
+	movimento: function(ev, peca, posicaoAnt, posicaoNova,cor){
 	    ev.preventDefault();
 		switch(peca){
 			case 'piao':
-				conjuntoMovimentos.piao(posicaoAnt,posicaoNova);
+				if(conjuntoMovimentos.piao(posicaoAnt,posicaoNova,cor)){
+					return true
+				}else{
+					return false
+				}
 				break;
 		}
 	}
 }
 
 var conjuntoMovimentos = {
-	piao: function(posicaoAnt, posicaoNova){
-		var casaAnt = posicaoAnt.charAt(0);
-		var casaNov = posicaoNova.charAt(0);		
-		console.log('Casa antiga: ',casaAnt, '\nCasa nova: ', casaNov);
-		if(casaAnt == casaNov){
-			console.log('Pode');
+	dados:{
+		casaAnt: '',
+		posAnt: '',
+		casaNova: '',
+		posNova: '',
+		cor: '',
+		primeiraJogada: false
+	},
+	attPosicoes: function(posicaoAnt, posicaoNova, cor){
+		conjuntoMovimentos.dados.casaAnt = posicaoAnt.charAt(0);
+		conjuntoMovimentos.dados.posAnt = posicaoAnt.charAt(1);
+		conjuntoMovimentos.dados.casaNov = posicaoNova.charAt(0);
+		conjuntoMovimentos.dados.posNova = posicaoNova.charAt(1);
+		conjuntoMovimentos.dados.cor = cor;
+	},
+	limparPosicoes: function(){
+		conjuntoMovimentos.dados.casaAnt = '';
+		conjuntoMovimentos.dados.posAnt = '';
+		conjuntoMovimentos.dados.casaNov = '';
+		conjuntoMovimentos.dados.posNova = '';
+		conjuntoMovimentos.dados.cor = '';
+		conjuntoMovimentos.dados.primeiraJogada = '';
+	},
+	piao: function(posicaoAnt, posicaoNova, cor){		
+		conjuntoMovimentos.attPosicoes(posicaoAnt,posicaoNova,cor);
+		if(conjuntoMovimentos.dados.cor == 'branco' && conjuntoMovimentos.dados.posAnt === '2'){
+			conjuntoMovimentos.dados.primeiraJogada = true;
+		}else if(conjuntoMovimentos.dados.cor == 'preto' && conjuntoMovimentos.dados.posAnt === '7'){
+			conjuntoMovimentos.dados.primeiraJogada = true;
+		}else{			
+			conjuntoMovimentos.dados.primeiraJogada = false;
+		}
+		console.log('Casa antiga: ',conjuntoMovimentos.dados.casaAnt, '\nCasa nova: ', conjuntoMovimentos.dados.casaNov);
+		if(conjuntoMovimentos.dados.casaAnt == conjuntoMovimentos.dados.casaNov){		
+			if(conjuntoMovimentos.dados.primeiraJogada){
+				if(conjuntoMovimentos.dados.cor == 'branco'){
+					if((parseInt(conjuntoMovimentos.dados.posAnt)+2) == conjuntoMovimentos.dados.posNova || (parseInt(conjuntoMovimentos.dados.posAnt)+1) == conjuntoMovimentos.dados.posNova){
+						console.log('Pode');
+						return true;
+					}else{
+						console.log('Não Pode');
+						return false;					
+					}
+				}else{
+					if((parseInt(conjuntoMovimentos.dados.posAnt)-2) == conjuntoMovimentos.dados.posNova || (parseInt(conjuntoMovimentos.dados.posAnt)-1) == conjuntoMovimentos.dados.posNova){
+						console.log('Pode');
+						return true;
+					}else{
+						console.log('Não Pode');
+						return false;					
+					}
+				}
+			}else{
+				if(conjuntoMovimentos.dados.cor == 'branco'){
+					if((parseInt(conjuntoMovimentos.dados.posAnt)+1) == conjuntoMovimentos.dados.posNova){
+						console.log('Pode');
+						return true;
+					}else{
+						console.log('Não Pode');
+						return false;					
+					}
+				}else{
+					if((parseInt(conjuntoMovimentos.dados.posAnt)-1) == conjuntoMovimentos.dados.posNova){
+						console.log('Pode');
+						return true;
+					}else{
+						console.log('Não Pode');
+						return false;					
+					}
+				}
+			}
 		}else{
-			console.log('Não Pode');
+			console.log('Não Pode');			
+			return false;
 		}
 	}
 }
