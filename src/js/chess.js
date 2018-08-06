@@ -85,6 +85,7 @@ var movimentos = {
 			($(pecaRemover).attr('id') != movimentos.pecaSalva.id) ? movimentosValidos.comePeca(ev,pecaRemover,posicao) : console.log('Mesma peça Fii');	    	
 	    }else{
 	    	movimentos.pecaSalva.casaNova = $(posicao).attr('data-pos');
+	    	movimentosValidos.movimento(ev,movimentosValidos.retornaPeca(movimentos.pecaSalva.id),movimentos.pecaSalva.casaAnt, movimentos.pecaSalva.casaNova);	    	
 	    	$(posicao).append($('#'+movimentos.pecaSalva.id));
 	    	console.log('========Jogada========\n'+movimentos.pecaSalva.id+'|'+movimentos.pecaSalva.casaAnt+'-'+movimentos.pecaSalva.casaNova+'\n===================');	
 	    	movimentos.limparDadosPeca();    		    	
@@ -126,8 +127,28 @@ var movimentosValidos = {
     	}else{
     		console.log('Cores iguais Fii - Não podes comer (Vs.9)');
     	}    	
+	},
+	movimento: function(ev, peca, posicaoAnt, posicaoNova){
+	    ev.preventDefault();
+		switch(peca){
+			case 'piao':
+				conjuntoMovimentos.piao(posicaoAnt,posicaoNova);
+				break;
+		}
 	}
+}
 
+var conjuntoMovimentos = {
+	piao: function(posicaoAnt, posicaoNova){
+		var casaAnt = posicaoAnt.charAt(0);
+		var casaNov = posicaoNova.charAt(0);		
+		console.log('Casa antiga: ',casaAnt, '\nCasa nova: ', casaNov);
+		if(casaAnt == casaNov){
+			console.log('Pode');
+		}else{
+			console.log('Não Pode');
+		}
+	}
 }
 
 var verificaVazio = function(){
