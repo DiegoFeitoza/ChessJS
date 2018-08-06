@@ -8,6 +8,7 @@ var chess = {
 		var $mainChess = $('#main-chess');
 		var $campoPeca = $('.item-tabuleiro');
 		var $tabuleiro = $('#lista-tabuleiro');
+		var $jogadas = $('#corpo-jogadas');
 		var telaH = $(window).height();
 		var telaW = $(window).width();
 		var linha = 1;
@@ -28,6 +29,12 @@ var chess = {
 
 		$campoPeca.find('a').css({
 			'font-size': ($campoPeca.width()*0.65)+'px'
+		});
+
+		$jogadas.css({
+			'height': ($tabuleiro.height()-$('#top-chess').height())+'px',
+			'overflow': 'scroll'
+
 		});
 
 		for(var i=1; i <= $campoPeca.length; i++){
@@ -88,6 +95,7 @@ var movimentos = {
 
 	    	if(movimentosValidos.movimento(ev,movimentosValidos.retornaPeca(movimentos.pecaSalva.id), movimentos.pecaSalva.casaAnt, movimentos.pecaSalva.casaNova, movimentosValidos.retornaCor(movimentos.pecaSalva.id))){	    	
 		    	$(posicao).append($('#'+movimentos.pecaSalva.id));
+		    	movimentos.salvarJoga($('#'+movimentos.pecaSalva.id),movimentos.pecaSalva.casaAnt,movimentos.pecaSalva.casaNova,null);
 		    	console.log('========Jogada========\n'+movimentos.pecaSalva.id+'|'+movimentos.pecaSalva.casaAnt+'-'+movimentos.pecaSalva.casaNova+'\n===================');	
 		    	movimentos.limparDadosPeca();
 	    	}    		    	
@@ -98,6 +106,17 @@ var movimentos = {
     	movimentos.pecaSalva.id="";
     	movimentos.pecaSalva.casaAnt="";
     	movimentos.pecaSalva.casaNova="";
+	},
+	//salvas jogadas
+	salvarJoga: function(peca, casaAntiga, novaCasa, pecaMorta){
+		var listaServico = $('#lista-jogadas');
+		var itemJogada = '';
+		if(pecaMorta){
+			itemJogada = '<li class="jogada"><span>'+$(peca).attr('id') +' '+ $(peca).text()+'</span><br>'+casaAntiga+' &rarr; '+novaCasa+'<br><span>'+'&#10008; '+$(pecaMorta).attr('id')+' '+$(pecaMorta).text()+'</span>'+'</li>';
+		}else{
+			itemJogada = '<li class="jogada"><span>'+$(peca).attr('id') +' '+ $(peca).text()+'</span><br>'+casaAntiga+' &rarr; '+novaCasa+'</li>';
+		}
+		$(listaServico).prepend(itemJogada);
 	}
 }
 
@@ -139,7 +158,22 @@ var movimentosValidos = {
 				    	console.log('Peca Removida: ', $(pecaRemover).attr('id'));
 				    	console.log('Peca que comeu: ', movimentos.pecaSalva.id,'\n=======================');
 				    	console.log('========Jogada========\n'+movimentos.pecaSalva.id+'|'+movimentos.pecaSalva.casaAnt+'-'+movimentos.pecaSalva.casaNova+'\nRemoveu: '+$(pecaRemover).attr('id')+ '\n===================');	
+				    	movimentos.salvarJoga($('#'+movimentos.pecaSalva.id),movimentos.pecaSalva.casaAnt,movimentos.pecaSalva.casaNova,$(pecaRemover));
+		    	
+
+				    	movimentos.limparDadosPeca();
+    				}else if(cor == 'preto' && ((parseInt(movimentos.pecaSalva.casaAnt.charAt(1))-1) == movimentos.pecaSalva.casaNova.charAt(1))){
+    					console.log('Pode');   				
+		    			$(posicao).text('');
+				    	$(posicao).append($('#'+movimentos.pecaSalva.id));
+			    		console.log('\n====Movimentos ComePeça====\nPosição final: '+$(posicao).attr('data-pos'));
+				    	console.log('Peca Removida: ', $(pecaRemover).attr('id'));
+				    	console.log('Peca que comeu: ', movimentos.pecaSalva.id,'\n=======================');
+				    	console.log('========Jogada========\n'+movimentos.pecaSalva.id+'|'+movimentos.pecaSalva.casaAnt+'-'+movimentos.pecaSalva.casaNova+'\nRemoveu: '+$(pecaRemover).attr('id')+ '\n===================');	
 				    	
+				    	movimentos.salvarJoga($('#'+movimentos.pecaSalva.id),movimentos.pecaSalva.casaAnt,movimentos.pecaSalva.casaNova,$(pecaRemover));
+		    	
+
 				    	movimentos.limparDadosPeca();
     				}else{
     					console.log('Pião só come para o lado == carangue')
