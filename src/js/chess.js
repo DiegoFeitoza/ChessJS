@@ -1,8 +1,6 @@
-/*Javascript Chess
-	
+/*Javascript Chess	
 	Autor: Diego Feitoza
 	E-Mail: diegofeitoza.dev@gmail.com
-
 */
 
 var chess = {
@@ -34,7 +32,7 @@ var chess = {
 
 		for(var i=1; i <= $campoPeca.length; i++){
 			if(i>1 && i%8==0){
-				console.log('Linha: ',linha);
+				//console.log('Linha: ',linha);
 				if(linha%2 != 0){				
 					$('[data-pos="h'+linha+'"]').css('background',coresTabuleiro.marromClaro);
 					$('[data-pos="g'+linha+'"]').css('background',coresTabuleiro.marromEscuro);
@@ -61,6 +59,7 @@ var chess = {
 }
 
 var movimentos = {
+	//Salvar dados para movimento
 	pecaSalva:{
 		id: "",
 		casaAnt: "",
@@ -74,32 +73,24 @@ var movimentos = {
 	drag: function(ev, peca) {
 		var pai = $(peca).parent('[data-pos]');
 		movimentos.pecaSalva.casaAnt = $(pai).attr('data-pos');
-    	console.log('========\nPosição partida: '+movimentos.pecaSalva.casaAnt); //Posição que a peça foi!
 	    movimentos.pecaSalva.id = $(peca).attr('id');
-	    console.log('Peça: '+movimentos.pecaSalva.id);
-	    movimentosValidos(movimentos.pecaSalva.id);
+	    console.log('===Movimentos drag===\n  Peça: '+movimentos.pecaSalva.id,'\n======================');
 	},
 	//Solta
 	drop: function(ev,posicao) {
 	    ev.preventDefault();
 	    if($(posicao).find('a').length > 0){
-	    	console.log('Posição tentativa: '+$(posicao).attr('data-pos'));
-	    	var pecaRemover = $(posicao).find('a');
-	    	console.log($(posicao).find('a'));
-	    	console.log('Tem Gente');
-	    	$(posicao).text('');
-	    	$(posicao).append($('#'+movimentos.pecaSalva.id));
-	    	console.log('Peca Removida: ', $(pecaRemover).attr('id'));
-	    	console.log('\nPeca que comeu: ', movimentos.pecaSalva.id);
+	    	var pecaRemover = $(posicao).find('a'); 
+
+			($(pecaRemover).attr('id') != movimentos.pecaSalva.id) ? movimentosValidos.comePeca(ev,pecaRemover,posicao) : console.log('Mesma peça Fii');	    	
 	    }else{
-	    	console.log('Tá Livre');
-	    	movimentos.pecaSalva.casaNova = $(posicao).attr('data-pos')
-	    	console.log('Posição chegada: '+ movimentos.pecaSalva.casaNova); //Posição que a peça foi!
+	    	movimentos.pecaSalva.casaNova = $(posicao).attr('data-pos');
 	    	$(posicao).append($('#'+movimentos.pecaSalva.id));
-	    	console.log('=====Jogada====\n'+movimentos.pecaSalva.id+'|'+movimentos.pecaSalva.casaAnt+'-'+movimentos.pecaSalva.casaNova+'\n==========');	
+	    	console.log('========Jogada========\n'+movimentos.pecaSalva.id+'|'+movimentos.pecaSalva.casaAnt+'-'+movimentos.pecaSalva.casaNova+'\n===================');	
 	    	movimentos.limparDadosPeca();    		    	
 	    }
 	},
+	//Limpar os dados da peça salva
 	limparDadosPeca: function(){		
     	movimentos.pecaSalva.id="";
     	movimentos.pecaSalva.casaAnt="";
@@ -107,13 +98,44 @@ var movimentos = {
 	}
 }
 
-var movimentosValidos = function(peca){
-	var pecaTrat = peca.split('-');
-	pecaTrat = pecaTrat[0];
+var movimentosValidos = {
+	retornaPeca: function(peca){
+		var pecaTrat = peca.split('-'),
+			pecaTrat = pecaTrat[0]
+		return pecaTrat;
+	},
+	retornaCor: function(peca){
+		var cor = peca.split('-'),
+			cor = cor[1];
+		return cor;
+	},
+	comePeca: function(ev, pecaRemover, posicao){		
+	    ev.preventDefault();	    
+    	movimentos.pecaSalva.casaNova = $(posicao).attr('data-pos');
+    	if(movimentosValidos.retornaCor($(pecaRemover).attr('id')) != movimentosValidos.retornaCor(movimentos.pecaSalva.id)){
+    		console.log('Cores diferentes - Vai na fé');
+	    	$(posicao).text('');
+	    	$(posicao).append($('#'+movimentos.pecaSalva.id));
 
-	console.log('\nPeça a calcular o movimento: '+pecaTrat);
+    		console.log('\n====Movimentos ComePeça====\nPosição final: '+$(posicao).attr('data-pos'));
+	    	console.log('Peca Removida: ', $(pecaRemover).attr('id'));
+	    	console.log('Peca que comeu: ', movimentos.pecaSalva.id,'\n=======================');
+	    	console.log('========Jogada========\n'+movimentos.pecaSalva.id+'|'+movimentos.pecaSalva.casaAnt+'-'+movimentos.pecaSalva.casaNova+'\nRemoveu: '+$(pecaRemover).attr('id')+ '\n===================');	
+	    	
+	    	movimentos.limparDadosPeca();
+    	}else{
+    		console.log('Cores iguais Fii - Não podes comer (Vs.9)');
+    	}    	
+	}
 
+}
 
+var verificaVazio = function(){
+	if(!movimentos.pecaSalva.id){
+		return true;
+	}else{
+		return false;
+	}
 }
 
 var init = function(){
@@ -128,32 +150,15 @@ $(function(){
 		chess.organizar();
 	});
 
-	//Events
-	$('.peca-branca').on('click', function(){
-		movimentos.drag(event,this);
-	});
 
+	//Events Drag & Drop
 	$('.peca-branca').on('dragstart',function(){
-		movimentos.drag(event,this);
-	});
-
-	$('.peca-preta').on('click', function(){
 		movimentos.drag(event,this);
 	});
 
 	$('.peca-preta').on('dragstart',function(){
 		movimentos.drag(event,this);
 	});
-
-	//Events
-	$('.item-tabuleiro').on('click',function(){
-		if($(this).find('a').length > 0){
-			console.log('não livre');
-		}else{			
-			movimentos.drop(event, this);
-		}		
-	});
-
 	$('.item-tabuleiro').on('drop',function(){
 		movimentos.drop(event,this);
 	});
@@ -161,5 +166,23 @@ $(function(){
 	$('.item-tabuleiro').on('dragover',function(){
 		movimentos.allowDrop(event);
 	});
-});
+
+	//Events click
+	$('.item-tabuleiro').on('click',function(){
+		if($(this).find('a').length > 0){
+
+			var peca = $(this).find('a');
+
+			if(verificaVazio()){
+				movimentos.drag(event,peca);
+			}else{			
+				($(peca).attr('id') != movimentos.pecaSalva.id) ? movimentosValidos.comePeca(event,peca,this) : console.log('Mesma peça Fii');
+				
+			}		
+		}else{			
+			movimentos.drop(event, this);
+		}		
+	});
+
+}); 
 
