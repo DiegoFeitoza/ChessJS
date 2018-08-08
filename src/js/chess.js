@@ -136,7 +136,16 @@ var movimentosValidos = {
     	movimentos.pecaSalva.casaNova = $(posicao).attr('data-pos');
     	var posicoes = ['a','b','c','d','e','f','g','h'];
     	var podeComerCasa = false;
-
+    	var comer = function(){
+    		console.log('Pode');   				
+			$(posicao).text('');
+	    	$(posicao).append($('#'+movimentos.pecaSalva.id));
+    		console.log('\n====Movimentos ComePeça====\nPosição final: '+$(posicao).attr('data-pos'));
+	    	console.log('Peca Removida: ', $(pecaRemover).attr('id'));
+	    	console.log('Peca que comeu: ', movimentos.pecaSalva.id,'\n=======================');
+	    	console.log('========Jogada========\n'+movimentos.pecaSalva.id+'|'+movimentos.pecaSalva.casaAnt+'-'+movimentos.pecaSalva.casaNova+'\nRemoveu: '+$(pecaRemover).attr('id')+ '\n===================');	
+	    	movimentos.salvarJoga($('#'+movimentos.pecaSalva.id),movimentos.pecaSalva.casaAnt,movimentos.pecaSalva.casaNova,$(pecaRemover));
+    	}
     	var comerPecas = {
     		piao: function(){
     			var cor = movimentosValidos.retornaCor(movimentos.pecaSalva.id);
@@ -151,35 +160,75 @@ var movimentosValidos = {
 
     			if(podeComerCasa){     				
     				if(cor == 'branco' && ((parseInt(movimentos.pecaSalva.casaAnt.charAt(1))+1) == movimentos.pecaSalva.casaNova.charAt(1))){
-    					console.log('Pode');   				
-		    			$(posicao).text('');
-				    	$(posicao).append($('#'+movimentos.pecaSalva.id));
-			    		console.log('\n====Movimentos ComePeça====\nPosição final: '+$(posicao).attr('data-pos'));
-				    	console.log('Peca Removida: ', $(pecaRemover).attr('id'));
-				    	console.log('Peca que comeu: ', movimentos.pecaSalva.id,'\n=======================');
-				    	console.log('========Jogada========\n'+movimentos.pecaSalva.id+'|'+movimentos.pecaSalva.casaAnt+'-'+movimentos.pecaSalva.casaNova+'\nRemoveu: '+$(pecaRemover).attr('id')+ '\n===================');	
-				    	movimentos.salvarJoga($('#'+movimentos.pecaSalva.id),movimentos.pecaSalva.casaAnt,movimentos.pecaSalva.casaNova,$(pecaRemover));
-		    	
-
+    					comer();
 				    	movimentos.limparDadosPeca();
-    				}else if(cor == 'preto' && ((parseInt(movimentos.pecaSalva.casaAnt.charAt(1))-1) == movimentos.pecaSalva.casaNova.charAt(1))){
-    					console.log('Pode');   				
-		    			$(posicao).text('');
-				    	$(posicao).append($('#'+movimentos.pecaSalva.id));
-			    		console.log('\n====Movimentos ComePeça====\nPosição final: '+$(posicao).attr('data-pos'));
-				    	console.log('Peca Removida: ', $(pecaRemover).attr('id'));
-				    	console.log('Peca que comeu: ', movimentos.pecaSalva.id,'\n=======================');
-				    	console.log('========Jogada========\n'+movimentos.pecaSalva.id+'|'+movimentos.pecaSalva.casaAnt+'-'+movimentos.pecaSalva.casaNova+'\nRemoveu: '+$(pecaRemover).attr('id')+ '\n===================');	
-				    	
-				    	movimentos.salvarJoga($('#'+movimentos.pecaSalva.id),movimentos.pecaSalva.casaAnt,movimentos.pecaSalva.casaNova,$(pecaRemover));
-		    	
-
+    				}else if(cor == 'preto' && ((parseInt(movimentos.pecaSalva.casaAnt.charAt(1))-1) == movimentos.pecaSalva.casaNova.charAt(1))){    					
+    					comer();
 				    	movimentos.limparDadosPeca();
     				}else{
     					console.log('Pião só come para o lado == carangue')
     				}
     			}else{
     				console.log('Não pode');
+    			}
+    		},
+    		torre: function(){
+    			var cor = movimentosValidos.retornaCor(movimentos.pecaSalva.id);
+    			var posValidacaoComer;
+    			
+    			if(movimentos.pecaSalva.casaAnt.charAt(0) == movimentos.pecaSalva.casaNova.charAt(0)){
+    				if(parseInt(movimentos.pecaSalva.casaAnt.charAt(1)) < parseInt(movimentos.pecaSalva.casaNova.charAt(1))){
+    					posValidacaoComer = movimentos.pecaSalva.casaAnt.charAt(0)+(parseInt(movimentos.pecaSalva.casaNova.charAt(1))-1);
+    					if(conjuntoMovimentos.pecaBloqueando(movimentos.pecaSalva.casaAnt, posValidacaoComer, 'torre')){
+    						console.log('Não Pode comer');
+							return false;
+    					}else{
+    						comer();
+							console.log('Pode comer');
+							return false;
+    					}
+    				}else{
+						posValidacaoComer = movimentos.pecaSalva.casaAnt.charAt(0)+(parseInt(movimentos.pecaSalva.casaNova.charAt(1))+1);
+    					if(conjuntoMovimentos.pecaBloqueando(movimentos.pecaSalva.casaAnt, posValidacaoComer, 'torre')){
+    						console.log('Não Pode comer');
+							return false;
+    					}else{
+    						comer();
+							console.log('Pode comer');
+							return false;
+    					}
+    				}
+    			}else if(movimentos.pecaSalva.casaAnt.charAt(1) == movimentos.pecaSalva.casaNova.charAt(1)){
+    				if(movimentos.pecaSalva.casaAnt.charAt(0) < movimentos.pecaSalva.casaAnt.charAt(0)){
+    					for(var i=0; i < posicoes.length; i++){
+	    					if(posicoes[i] == movimentos.pecaSalva.casaNova.charAt(0)){
+	    						posValidacaoComer = posicoes[i-1]+movimentos.pecaSalva.casaNova.charAt(1);
+	    						if(posValidacaoComer == movimentos.pecaSalva.casaAnt){
+	    							posValidacaoComer = movimentos.pecaSalva.casaNova;
+	    						}
+	    					}
+	    				}	    				
+    				}else{
+    					for(var i=0; i < posicoes.length; i++){
+	    					if(posicoes[i] == movimentos.pecaSalva.casaNova.charAt(0)){
+	    						posValidacaoComer = posicoes[i+1]+movimentos.pecaSalva.casaNova.charAt(1);
+	    						if(posValidacaoComer == movimentos.pecaSalva.casaAnt){
+	    							posValidacaoComer = movimentos.pecaSalva.casaNova;
+	    						}
+	    					}
+	    				}
+    				}
+    				if(conjuntoMovimentos.pecaBloqueando(movimentos.pecaSalva.casaAnt, posValidacaoComer, 'torre')){
+						console.log('Não Pode comer');
+						return false;
+					}else{
+						comer();
+						console.log('Pode comer');
+						return false;
+					}					
+				}else{
+    				console.log('Não pode');
+    				return false; 
     			}
     		}
     	}
@@ -191,6 +240,9 @@ var movimentosValidos = {
     		switch(peca){
     			case 'piao':
     				comerPecas.piao();
+    				break;
+    			case 'torre':
+    				comerPecas.torre();
     				break; 
     		}
 
@@ -203,6 +255,13 @@ var movimentosValidos = {
 		switch(peca){
 			case 'piao':
 				if(conjuntoMovimentos.piao(posicaoAnt,posicaoNova,cor)){
+					return true
+				}else{
+					return false
+				}
+				break;
+			case 'torre':
+				if(conjuntoMovimentos.torre(posicaoAnt,posicaoNova,cor)){
 					return true
 				}else{
 					return false
@@ -221,6 +280,7 @@ var conjuntoMovimentos = {
 		cor: '',
 		primeiraJogada: false
 	},
+	posicoes: ['a','b','c','d','e','f','g','h'],
 	attPosicoes: function(posicaoAnt, posicaoNova, cor){
 		conjuntoMovimentos.dados.casaAnt = posicaoAnt.charAt(0);
 		conjuntoMovimentos.dados.posAnt = posicaoAnt.charAt(1);
@@ -235,6 +295,70 @@ var conjuntoMovimentos = {
 		conjuntoMovimentos.dados.posNova = '';
 		conjuntoMovimentos.dados.cor = '';
 		conjuntoMovimentos.dados.primeiraJogada = '';
+	},
+	pecaBloqueando: function(posicaoAnt,posicaoNova,peca){
+		switch(peca){
+			case 'torre':						
+				if(posicaoAnt.charAt(0) == posicaoNova.charAt(0)){
+					if(parseInt(posicaoAnt.charAt(1)) < parseInt(posicaoNova.charAt(1))){
+						for(var i=1; i <= (parseInt(posicaoNova.charAt(1)) - parseInt(posicaoAnt.charAt(1))); i++){
+							console.log($('[data-pos="'+posicaoAnt.charAt(0) + (parseInt(posicaoAnt.charAt(1))+i)+'"]'));
+							if($('[data-pos="'+posicaoAnt.charAt(0) + (parseInt(posicaoAnt.charAt(1))+i)+'"]').find('a').length > 0){
+								pecaBlokeando = $('[data-pos="'+posicaoAnt.charAt(0) + (parseInt(posicaoAnt.charAt(1))+i)+'"]').find('a');
+								corPeça = movimentosValidos.retornaCor($(pecaBlokeando).attr('id'));
+								return true;
+							}
+						}
+					}else if(parseInt(posicaoAnt.charAt(1)) > parseInt(posicaoNova.charAt(1))){
+						for(var i=(parseInt(posicaoAnt.charAt(1))-1); i >= parseInt(posicaoNova.charAt(1)); i--){
+							console.log($('[data-pos="'+posicaoAnt.charAt(0)+i+'"]'));
+							if($('[data-pos="'+posicaoAnt.charAt(0)+i+'"]').find('a').length > 0){
+								pecaBlokeando = $('[data-pos="'+posicaoAnt.charAt(0)+i+'"]').find('a');
+								corPeça = movimentosValidos.retornaCor($(pecaBlokeando).attr('id'));
+								return true;
+							}
+						}
+					}else{
+						return false;
+					}
+				}else if(posicaoAnt.charAt(1) == posicaoNova.charAt(1)){
+					console.log('Entrou lateral Posições: ',conjuntoMovimentos.posicoes);
+					var posiPeca, posiNew;
+
+					for(var i=0; i < conjuntoMovimentos.posicoes.length; i++){						
+						if(posicaoAnt.charAt(0) == conjuntoMovimentos.posicoes[i]){
+							posiPeca = i;
+							console.log(conjuntoMovimentos.posicoes[i]);
+						}else if(posicaoNova.charAt(0) == conjuntoMovimentos.posicoes[i]){
+							posiNew = i;
+						}
+					}
+
+					console.log('Aqui= ',conjuntoMovimentos.posicoes[posiPeca]+posicaoAnt.charAt(1));
+
+					if(posicaoAnt.charAt(0) > posicaoNova.charAt(0)){
+						for(var i=(posiPeca-1); i >= posiNew; i--){
+							console.log(i)
+							if($('[data-pos="'+conjuntoMovimentos.posicoes[i]+posicaoAnt.charAt(1)+'"]').find('a').length > 0){
+								pecaBlokeando = $('[data-pos="'+conjuntoMovimentos.posicoes[i]+posicaoAnt.charAt(1)+'"]').find('a');
+								return true;
+							}
+						}
+					}else{
+						for(var i=(posiPeca+1); i <= posiNew; i++){
+							console.log(i)
+							if($('[data-pos="'+conjuntoMovimentos.posicoes[i]+posicaoAnt.charAt(1)+'"]').find('a').length > 0){
+								console.log($('[data-pos="'+conjuntoMovimentos.posicoes[i]+posicaoAnt.charAt(1)+'"]').find('a'),'Blockeado!!');
+								return true;
+							}
+						}
+					}
+							
+				}else{
+					return false;
+				}
+				break;
+		}
 	},
 	piao: function(posicaoAnt, posicaoNova, cor){		
 		conjuntoMovimentos.attPosicoes(posicaoAnt,posicaoNova,cor);
@@ -287,6 +411,26 @@ var conjuntoMovimentos = {
 		}else{
 			console.log('Não Pode');			
 			return false;
+		}
+	},
+	torre: function(posicaoAnt, posicaoNova, cor){
+		conjuntoMovimentos.attPosicoes(posicaoAnt,posicaoNova,cor);
+		if(conjuntoMovimentos.pecaBloqueando(posicaoAnt,posicaoNova,'torre')){
+			console.log('Tem peça papai! Vai jogar não');
+		}else{
+			console.log('Tem peça não papai!');			
+			console.log('Torre andando: ', posicaoAnt, posicaoNova, cor);		
+			if(conjuntoMovimentos.dados.cor == 'branco' || conjuntoMovimentos.dados.cor == 'preto'){
+				if(conjuntoMovimentos.dados.casaAnt == conjuntoMovimentos.dados.casaNov){
+					return true;
+				}else if((conjuntoMovimentos.dados.casaAnt != conjuntoMovimentos.dados.casaNov) && (conjuntoMovimentos.dados.posAnt == conjuntoMovimentos.dados.posNova)){
+					return true;
+				}else{
+					return false;
+				}
+			}else{
+				return false;
+			}
 		}
 	}
 }

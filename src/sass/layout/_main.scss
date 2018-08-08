@@ -5,3 +5,39 @@
 	justify-content: center;
 }
 
+#corpo-jogadas{
+	&::-webkit-scrollbar-track {
+	    background-color: #F4F4F4;
+	}
+	&::-webkit-scrollbar {
+	    width: 6px;
+	    background: #F4F4F4;
+	    &:hover{
+	    	cursor:pointer;
+	    }
+	}
+	&::-webkit-scrollbar-thumb {
+	    background: #dad7d7;
+    	border-radius: 5px;
+	}
+	#lista-jogadas{
+		list-style: none;
+		padding:0;
+		margin:0;
+		li{
+			span{
+				font-weight: bold;
+				font-style: normal;
+			}
+			font-style: italic;
+			padding: 5px;
+		}
+		li:nth-child(even){
+			background: rgba(0,0,0,0.5);
+		}
+		li:nth-child(odd){			
+			background: rgba(100,100,100,0.5);
+		}
+	}
+}
+
