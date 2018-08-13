@@ -202,7 +202,7 @@ var movimentosValidos = {
     				if(movimentos.pecaSalva.casaAnt.charAt(0) < movimentos.pecaSalva.casaAnt.charAt(0)){
     					for(var i=0; i < posicoes.length; i++){
 	    					if(posicoes[i] == movimentos.pecaSalva.casaNova.charAt(0)){
-	    						posValidacaoComer = posicoes[i-1]+movimentos.pecaSalva.casaNova.charAt(1);
+	    						posValidacaoComer = posicoes[i-1]+movimentos.pecaSalva.casaNova.charAt(1);    						
 	    						if(posValidacaoComer == movimentos.pecaSalva.casaAnt){
 	    							posValidacaoComer = movimentos.pecaSalva.casaNova;
 	    						}
