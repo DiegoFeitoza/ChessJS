@@ -174,7 +174,7 @@ var movimentosValidos = {
     		},
     		torre: function(){
     			var cor = movimentosValidos.retornaCor(movimentos.pecaSalva.id);
-    			var posValidacaoComer;
+    			var posValidacaoComer, posContaCasa;
     			
     			if(movimentos.pecaSalva.casaAnt.charAt(0) == movimentos.pecaSalva.casaNova.charAt(0)){
     				if(parseInt(movimentos.pecaSalva.casaAnt.charAt(1)) < parseInt(movimentos.pecaSalva.casaNova.charAt(1))){
@@ -199,10 +199,14 @@ var movimentosValidos = {
     					}
     				}
     			}else if(movimentos.pecaSalva.casaAnt.charAt(1) == movimentos.pecaSalva.casaNova.charAt(1)){
-    				if(movimentos.pecaSalva.casaAnt.charAt(0) < movimentos.pecaSalva.casaAnt.charAt(0)){
+    				if(movimentos.pecaSalva.casaAnt.charAt(0) < movimentos.pecaSalva.casaNova.charAt(0)){
     					for(var i=0; i < posicoes.length; i++){
 	    					if(posicoes[i] == movimentos.pecaSalva.casaNova.charAt(0)){
-	    						posValidacaoComer = posicoes[i-1]+movimentos.pecaSalva.casaNova.charAt(1);    						
+	    						if(posicoes[i-2]+movimentos.pecaSalva.casaNova.charAt(1) == movimentos.pecaSalva.casaAnt){
+	    							posValidacaoComer = movimentos.pecaSalva.casaNova;
+	    						}else{	    							
+	    							posValidacaoComer = posicoes[i-1]+movimentos.pecaSalva.casaNova.charAt(1);
+	    						}    						
 	    						if(posValidacaoComer == movimentos.pecaSalva.casaAnt){
 	    							posValidacaoComer = movimentos.pecaSalva.casaNova;
 	    						}
@@ -211,7 +215,14 @@ var movimentosValidos = {
     				}else{
     					for(var i=0; i < posicoes.length; i++){
 	    					if(posicoes[i] == movimentos.pecaSalva.casaNova.charAt(0)){
-	    						posValidacaoComer = posicoes[i+1]+movimentos.pecaSalva.casaNova.charAt(1);
+	    						if(posicoes[i+2]+movimentos.pecaSalva.casaNova.charAt(1) == movimentos.pecaSalva.casaAnt){
+	    							posValidacaoComer = movimentos.pecaSalva.casaNova;
+	    						}else{	    							
+	    							posValidacaoComer = posicoes[i+1]+movimentos.pecaSalva.casaNova.charAt(1);
+	    						}
+	    						console.log('posValidacaoComer', posValidacaoComer);
+	    						console.log('movimentos.pecaSalva.casaNova', movimentos.pecaSalva.casaNova);
+	    						console.log('movimentos.pecaSalva.casaAnt', movimentos.pecaSalva.casaAnt);
 	    						if(posValidacaoComer == movimentos.pecaSalva.casaAnt){
 	    							posValidacaoComer = movimentos.pecaSalva.casaNova;
 	    						}
@@ -219,7 +230,7 @@ var movimentosValidos = {
 	    				}
     				}
     				if(conjuntoMovimentos.pecaBloqueando(movimentos.pecaSalva.casaAnt, posValidacaoComer, 'torre')){
-						console.log('Não Pode comer');
+						console.log('Não Pode comer lateral');
 						return false;
 					}else{
 						comer();
@@ -323,6 +334,8 @@ var conjuntoMovimentos = {
 					}
 				}else if(posicaoAnt.charAt(1) == posicaoNova.charAt(1)){
 					console.log('Entrou lateral Posições: ',conjuntoMovimentos.posicoes);
+					console.log('posicaoAnt: ',posicaoAnt.charAt(0));
+					console.log('posicaoNova: ',posicaoNova.charAt(0));
 					var posiPeca, posiNew;
 
 					for(var i=0; i < conjuntoMovimentos.posicoes.length; i++){						
@@ -338,18 +351,39 @@ var conjuntoMovimentos = {
 
 					if(posicaoAnt.charAt(0) > posicaoNova.charAt(0)){
 						for(var i=(posiPeca-1); i >= posiNew; i--){
-							console.log(i)
+							console.log('Posicoes da peça: ',posiPeca, ' - ', posiNew)
 							if($('[data-pos="'+conjuntoMovimentos.posicoes[i]+posicaoAnt.charAt(1)+'"]').find('a').length > 0){
 								pecaBlokeando = $('[data-pos="'+conjuntoMovimentos.posicoes[i]+posicaoAnt.charAt(1)+'"]').find('a');
-								return true;
+								if(posiPeca-1 == posiNew){
+									if($(pecaBlokeando).attr('class') == "peca-branca"){
+										console.log(pecaBlokeando);
+										return false;
+									}else{
+										return true;									
+									}
+								}else{
+									return true;
+								}
 							}
 						}
 					}else{
 						for(var i=(posiPeca+1); i <= posiNew; i++){
-							console.log(i)
-							if($('[data-pos="'+conjuntoMovimentos.posicoes[i]+posicaoAnt.charAt(1)+'"]').find('a').length > 0){
-								console.log($('[data-pos="'+conjuntoMovimentos.posicoes[i]+posicaoAnt.charAt(1)+'"]').find('a'),'Blockeado!!');
-								return true;
+							console.log(i)							
+							if($('[data-pos="'+conjuntoMovimentos.posicoes[i]+posicaoAnt.charAt(1)+'"]').find('a').length > 0){							
+								pecaBlokeando = $('[data-pos="'+conjuntoMovimentos.posicoes[i]+posicaoAnt.charAt(1)+'"]').find('a');
+								//console.log($('[data-pos="'+conjuntoMovimentos.posicoes[i]+posicaoAnt.charAt(1)+'"]').find('a'),'Blockeado!!');
+								if(posiPeca+1 == posiNew){
+									if($(pecaBlokeando).attr('class') == "peca-branca"){
+										console.log(pecaBlokeando);
+										return false;
+									}else{
+										return true;
+									}
+								}else{									
+									return true;
+								}
+							}else{
+								return false;
 							}
 						}
 					}
