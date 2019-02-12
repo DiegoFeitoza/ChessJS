@@ -190,7 +190,7 @@ var movimentosValidos = {
     				}else{
 						posValidacaoComer = movimentos.pecaSalva.casaAnt.charAt(0)+(parseInt(movimentos.pecaSalva.casaNova.charAt(1))+1);
     					if(conjuntoMovimentos.pecaBloqueando(movimentos.pecaSalva.casaAnt, posValidacaoComer, 'torre')){
-    						console.log('Não Pode comer');
+    						console.log('Não Pode comer - torre');
 							return false;
     					}else{
     						comer();

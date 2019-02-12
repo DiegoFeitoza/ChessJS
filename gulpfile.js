@@ -32,13 +32,13 @@ var outDevImage = {
       pngquant: true,
       optipng: false,
       zopflipng: true,
-      jpegRecompress: true,
+      jpegRecompress: false,
       mozjpeg: true,
       guetzli: false,
       gifsicle: true,
       svgo: true,
       concurrent: 10,
-      quiet: true
+      quiet: true // defaults to false
     }
 
 //Nome do arquivo de deploy
@@ -73,11 +73,11 @@ gulp.task('script', function () {
 });
 
 //Otimização de imagem
-gulp.task('image', function () {
-  gulp.src(imgFiles)
-    .pipe(image(outDevImage))
-    .pipe(gulp.dest(imgDest));
-});
+// gulp.task('image', function () {
+//   gulp.src(imgFiles)
+//     .pipe(image(outDevImage))
+//     .pipe(gulp.dest(imgDest));
+// });
 
 // Task Copy Libs
 gulp.task('copylibs', function () {
@@ -99,8 +99,8 @@ gulp.task('deploy', function(){
 });
 
 // Default task
-gulp.task('default', ['sass','script','image','copylibs'], function() {
+gulp.task('default', ['sass','script','copylibs'], function() {
   gulp.watch(scssFiles,['sass']);
   gulp.watch(jsFiles,['script']);
-  gulp.watch(imgFiles,['image']);
+  // gulp.watch(imgFiles,['image']);
 });
